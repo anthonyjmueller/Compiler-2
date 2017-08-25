@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* forwadPosition;
-char* backPosition;
+int forwadPosition = 0;
+int backPosition = 0;
 struct ReserveWord *startReserve;
 struct SymbolTable *startSymbol;
 
@@ -26,6 +26,19 @@ int main()
     writePtr = fopen("ListingFile.txt", "a");
 
     startReserve = ReserveWordListCreator();
+    struct ReserveWord tempIter;
+    tempIter = *startReserve;
+
+    //All reserve word data collected correctly
+    while(tempIter.next != NULL){
+        printf(tempIter.resWord);
+        printf(tempIter.token);
+        char tempStr[5];
+        sprintf(tempStr, "%d", tempIter.atribute);
+        printf(tempStr);
+        tempIter = *tempIter.next;
+        printf("\n");
+    }
 
 //    struct ReserveWord *temp = startReserve;
 //    while ( (*temp).next != NULL ){
@@ -54,11 +67,12 @@ int main()
         TokenReturnInit(returnedToken);
 
         //gets next token
-        analyzer(readingBuff, returnedToken);
+        analyzer(readingBuff, returnedToken, forwadPosition, backPosition);
+
         printf(returnedTokenobj.token);
         while ((*returnedToken).token != 0){ //Prints tokens obtained by analyzer
             ListingPrinter(returnedToken, currLine);
-            analyzer(readingBuff, returnedToken);
+            analyzer(readingBuff, returnedToken, forwadPosition, backPosition);
         }
 
         //test Prints
