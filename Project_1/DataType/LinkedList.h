@@ -1,5 +1,6 @@
 #ifndef LINKEDLIST
 #define LINKEDLIST
+#include<string.h>
 
 struct ReserveWord {
     char resWord[10];
@@ -16,6 +17,7 @@ struct SymbolTable {
 struct TokenReturn {
     int token;
     int atribute;
+    char tokenChars[15];
 };
 
 struct ReserveWord* ReserveWordListCreator();

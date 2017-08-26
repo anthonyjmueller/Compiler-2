@@ -1,1 +1,19 @@
-Line    Lexeme         Token Type  Token Attribute
+Line        Lexeme        Token Type       Token Attribute
+    1             *            MULOP                     0
+    2             *            MULOP                     0
+    3             *            MULOP                     0
+    4             *            MULOP                     0
+    4             )         GROUPING                     1
+   52             +            ADDOP                     0
+   53             -            ADDOP                     1
+   54             =            RELOP                     0
+   55             <            RELOP                     1
+   56             <            RELOP                     3
+   57            <=            RELOP                     2
+   58            >=            RELOP                     4
+   59             *            MULOP                     0
+   60             /            MULOP                     1
+   61             (         GROUPING                     0
+   62             )         GROUPING                     1
+   63             {         GROUPING                     2
+   64             }         GROUPING                     3

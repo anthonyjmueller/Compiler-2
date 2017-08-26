@@ -5,4 +5,6 @@ void ListingPrinter(struct TokenReturn*, int);
 
 void InitTokenFile(FILE*);
 
+void printToken(struct TokenReturn*, char[], FILE*);
+
 #endif // PRINTHANDLER

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 int forwadPosition = 0;
 int backPosition = 0;
@@ -59,6 +60,7 @@ int main()
     fgets(readingBuff, 72, readPtr);
 
     while(fgets(readingBuff, 72, readPtr) != NULL){
+
         forwadPosition = 0;
         backPosition = 0;
 
@@ -79,10 +81,15 @@ int main()
         do{ //Prints tokens obtained by analyzer
             //ListingPrinter(returnedToken, currLine);
             analyzer(readingBuff, returnedToken);
+            // For testing only
             char temp[5];
             sprintf(temp, "%d", returnedTokenobj.token);
             printf(temp);
             printf("here \n");
+            //End
+            if(returnedTokenobj.token != 0){
+                printToken(returnedToken, lineNum, tokenWrite);
+            }
         }while ((*returnedToken).token != 0);
 
         //test Prints

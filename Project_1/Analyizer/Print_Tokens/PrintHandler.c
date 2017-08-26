@@ -28,9 +28,54 @@ void ListingPrinter(struct TokenReturn *currToken, int currLine){
 }
 
 void InitTokenFile(FILE *lstPtr){
-    fprintf(lstPtr, "Line    "); // (9)
-    fprintf(lstPtr, "Lexeme         "); //(15)
-    fprintf(lstPtr, "Token Type  "); //(12)
+    fprintf(lstPtr, "Line        "); // (9)
+    fprintf(lstPtr, "Lexeme        "); //(15)
+    fprintf(lstPtr, "Token Type       "); //(17)
     fprintf(lstPtr, "Token Attribute"); //(15)
     fprintf(lstPtr, "\n");
+}
+
+void printToken(struct TokenReturn *currToken, char lineNum[], FILE *tokenFile){
+    int numDigits = strlen(lineNum);
+    for(; numDigits < 5; numDigits++){
+        fprintf(tokenFile, " ");
+    }
+    fprintf(tokenFile, lineNum);
+    fprintf(tokenFile, "    "); // Ends printing line number
+
+    numDigits = strlen((*currToken).tokenChars);
+    for(; numDigits < 10; numDigits++){
+        fprintf(tokenFile, " ");
+    }
+    fprintf(tokenFile, (*currToken).tokenChars);
+    fprintf(tokenFile, "     "); // End printing string literal
+
+    if((*currToken).token == 1){ // totaling 12
+        fprintf(tokenFile, "       ");
+        fprintf(tokenFile, "ADDOP");
+    }
+    else if((*currToken).token == 2){ // totaling 12
+        fprintf(tokenFile, "       ");
+        fprintf(tokenFile, "RELOP");
+    }
+    else if((*currToken).token == 3){ // totaling 12
+        fprintf(tokenFile, "       ");
+        fprintf(tokenFile, "MULOP");
+    }
+    else if((*currToken).token == 4){ // totaling 12
+        fprintf(tokenFile, "    ");
+        fprintf(tokenFile, "GROUPING");
+    }
+    fprintf(tokenFile, "                 ");
+
+
+    char temp[5];
+    sprintf(temp, "%d", ((*currToken).atribute));
+    numDigits = strlen(temp);
+    for(; numDigits < 5; numDigits++){
+        fprintf(tokenFile, " ");
+    }
+    fprintf(tokenFile, temp); // End token attribute
+
+    fprintf(tokenFile, "\n");
 }
