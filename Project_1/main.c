@@ -27,6 +27,9 @@ int main()
 
     startReserve = ReserveWordListCreator();
 
+    struct ReserveWord tempIter = startReserve;
+    while(tempIter)
+
 //    struct ReserveWord *temp = startReserve;
 //    while ( (*temp).next != NULL ){
 //        printf((*temp).resWord);

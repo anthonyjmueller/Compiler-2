@@ -34,3 +34,34 @@
 
 1498337121 c:\users\anthony\desktop\compiler project\project 0\compiler\analyizer\print_tokens\printhandler.h
 
+1503643683 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.c
+	<stdlib.h>
+	<stdio.h>
+	"../DataType/LinkedList.h"
+	"./MainAnalyzer.h"
+
+1503643683 c:\users\amnas\desktop\compiler\compiler-2\project_1\datatype\linkedlist.h
+
+1503643683 c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.h
+
+1503643683 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\print_tokens\printhandler.c
+	<stdlib.h>
+	<stdio.h>
+	"../../DataType/LinkedList.h"
+	"./PrintHandler.h"
+
+1503643683 c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\print_tokens\printhandler.h
+
+1503643683 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\datatype\linkedlist.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"./LinkedList.h"
+
+1503643683 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"DataType/LinkedList.h"
+	"Analyizer/MainAnalyzer.h"
+	"Analyizer/Print_Tokens/PrintHandler.h"
+
