@@ -26,3 +26,11 @@ void ListingPrinter(struct TokenReturn *currToken, int currLine){
        printf("noError");
     }
 }
+
+void InitTokenFile(FILE *lstPtr){
+    fprintf(lstPtr, "Line    "); // (9)
+    fprintf(lstPtr, "Lexeme         "); //(15)
+    fprintf(lstPtr, "Token Type  "); //(12)
+    fprintf(lstPtr, "Token Attribute"); //(15)
+    fprintf(lstPtr, "\n");
+}

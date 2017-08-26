@@ -49,3 +49,13 @@ writeln('test');
     writeln(x);
     ReadLn();
 end.
+
++
+-
+=
+<
+>
+<=
+>=
+*
+/

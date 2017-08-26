@@ -1,0 +1,1 @@
+Line    Lexeme         Token Type  Token Attribute

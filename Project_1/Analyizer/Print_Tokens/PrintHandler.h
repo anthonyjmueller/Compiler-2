@@ -3,6 +3,6 @@
 
 void ListingPrinter(struct TokenReturn*, int);
 
-void initFiles();
+void InitTokenFile(FILE*);
 
 #endif // PRINTHANDLER

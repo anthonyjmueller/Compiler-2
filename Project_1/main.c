@@ -16,18 +16,23 @@ int main()
 
     FILE *readPtr;
     FILE *writePtr;
+    FILE *tokenWrite;
     char readingBuff[77];
     char lineNum[5];
     int currLine = 1;
 
     remove("ListingFile.txt");
+    remove("TokenFile.txt");
 
     readPtr = fopen("test2.pas","r");
     writePtr = fopen("ListingFile.txt", "a");
+    tokenWrite = fopen("TokenFile.txt", "a");
 
     startReserve = ReserveWordListCreator();
     struct ReserveWord tempIter;
     tempIter = *startReserve;
+
+    InitTokenFile(tokenWrite);
 
     //All reserve word data collected correctly
     while(tempIter.next != NULL){
@@ -45,10 +50,17 @@ int main()
 //        printf((*temp).resWord);
 //        temp = (*temp).next;
 //    }
+    //initializes Token return struct
+    struct TokenReturn returnedTokenobj;
+    struct TokenReturn* returnedToken = &returnedTokenobj;
+    TokenReturnInit(returnedToken);
+
 
     fgets(readingBuff, 72, readPtr);
 
     while(fgets(readingBuff, 72, readPtr) != NULL){
+        forwadPosition = 0;
+        backPosition = 0;
 
         //Setups numbering for ListingFile
         sprintf(lineNum, "%d", currLine);
@@ -61,19 +73,17 @@ int main()
         }
         fprintf(writePtr, readingBuff);
 
-    //initializes Token return struct
-        struct TokenReturn returnedTokenobj;
-        struct TokenReturn* returnedToken = &returnedTokenobj;
-        TokenReturnInit(returnedToken);
 
         //gets next token
-        analyzer(readingBuff, returnedToken, forwadPosition, backPosition);
 
-        printf(returnedTokenobj.token);
-        while ((*returnedToken).token != 0){ //Prints tokens obtained by analyzer
-            ListingPrinter(returnedToken, currLine);
-            analyzer(readingBuff, returnedToken, forwadPosition, backPosition);
-        }
+        do{ //Prints tokens obtained by analyzer
+            //ListingPrinter(returnedToken, currLine);
+            analyzer(readingBuff, returnedToken);
+            char temp[5];
+            sprintf(temp, "%d", returnedTokenobj.token);
+            printf(temp);
+            printf("here \n");
+        }while ((*returnedToken).token != 0);
 
         //test Prints
 
