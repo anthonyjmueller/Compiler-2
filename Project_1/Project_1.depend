@@ -30,13 +30,13 @@
 	"Analyizer/MainAnalyzer.h"
 	"Analyizer/Print_Tokens/PrintHandler.h"
 
-1503788489 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\print_tokens\printhandler.c
+1503791974 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\print_tokens\printhandler.c
 	<stdlib.h>
 	<stdio.h>
 	"../../DataType/LinkedList.h"
 	"./PrintHandler.h"
 
-1503785762 c:\users\amnas\desktop\compiler\compiler-2\project_1\datatype\linkedlist.h
+1503789781 c:\users\amnas\desktop\compiler\compiler-2\project_1\datatype\linkedlist.h
 	<string.h>
 
 1503784074 c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\print_tokens\printhandler.h
@@ -57,7 +57,7 @@
 
 1503776548 c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.h
 
-1503788457 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.c
+1503791791 source:c:\users\amnas\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>

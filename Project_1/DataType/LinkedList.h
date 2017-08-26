@@ -17,7 +17,7 @@ struct SymbolTable {
 struct TokenReturn {
     int token;
     int atribute;
-    char tokenChars[15];
+    char tokenChars[72];
 };
 
 struct ReserveWord* ReserveWordListCreator();

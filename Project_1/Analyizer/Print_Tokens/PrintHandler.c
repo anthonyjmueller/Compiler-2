@@ -28,7 +28,7 @@ void ListingPrinter(struct TokenReturn *currToken, int currLine){
 }
 
 void InitTokenFile(FILE *lstPtr){
-    fprintf(lstPtr, "Line        "); // (9)
+    fprintf(lstPtr, "Line             "); // (9)
     fprintf(lstPtr, "Lexeme        "); //(15)
     fprintf(lstPtr, "Token Type       "); //(17)
     fprintf(lstPtr, "Token Attribute"); //(15)
@@ -44,7 +44,7 @@ void printToken(struct TokenReturn *currToken, char lineNum[], FILE *tokenFile){
     fprintf(tokenFile, "    "); // Ends printing line number
 
     numDigits = strlen((*currToken).tokenChars);
-    for(; numDigits < 10; numDigits++){
+    for(; numDigits < 15; numDigits++){
         fprintf(tokenFile, " ");
     }
     fprintf(tokenFile, (*currToken).tokenChars);
@@ -65,6 +65,14 @@ void printToken(struct TokenReturn *currToken, char lineNum[], FILE *tokenFile){
     else if((*currToken).token == 4){ // totaling 12
         fprintf(tokenFile, "    ");
         fprintf(tokenFile, "GROUPING");
+    }
+    else if((*currToken).token == 5){ // totaling 12
+        fprintf(tokenFile, "         ");
+        fprintf(tokenFile, "INT");
+    }
+    else if((*currToken).token == 6){ // totaling 12
+        fprintf(tokenFile, "        ");
+        fprintf(tokenFile, "REAL");
     }
     fprintf(tokenFile, "                 ");
 

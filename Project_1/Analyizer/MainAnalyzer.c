@@ -6,7 +6,8 @@
 #define RELOP 2
 #define MULOP 3
 #define GROUPING 4
-#define INT
+#define INT 5
+#define REAL 6
 
 
 #include "./MainAnalyzer.h"
@@ -28,6 +29,10 @@ void analyzer(char readingBuffer[77], struct TokenReturn *Rtoken){// int *forwad
     return;
   }
   grouping(readingBuffer, Rtoken);
+  if((*Rtoken).token != 0){
+    return;
+  }
+  numbers(readingBuffer, Rtoken);
   if((*Rtoken).token != 0){
     return;
   }
@@ -135,5 +140,94 @@ void grouping (char readingBuffer[77], struct TokenReturn *Rtoken){
         strcpy((*Rtoken).tokenChars,"}");
         forwadPosition += 1;
     }
+    backPosition = forwadPosition;
+}
+
+/*** add error hadeling ***/
+void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
+    while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
+        forwadPosition += 1;
+    }
+    int len1 = forwadPosition - backPosition;
+    int len2 = 0;
+    int len3 = 0;
+
+    if(readingBuffer[forwadPosition] == 46){ //IF Real and not int
+        forwadPosition += 1;
+        while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
+            forwadPosition += 1;
+        }
+        len2 = forwadPosition - len1 - backPosition;
+        if(readingBuffer[forwadPosition] >= 69){
+            forwadPosition += 1;
+            while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
+                forwadPosition += 1;
+            }
+            len3 = forwadPosition - len1 - len2 - backPosition;
+        }
+    }
+
+    //Error checking
+    if(len1 > 10){
+        // Print error thingy
+        backPosition = forwadPosition;
+        return;
+    }
+    else if(len1 > 5 && len2 > 0){
+        //Error first part of real too long
+        backPosition = forwadPosition;
+        return;
+    }
+    else if(len2 > 6){
+        //Error second part of real too long
+        backPosition = forwadPosition;
+        return;
+    }
+    else if(len3 > 3){
+        //Error third part of real too long
+        backPosition = forwadPosition;
+        return;
+    }
+    else if(len2 > 0){
+        int location = 0;
+        while((location + backPosition) < forwadPosition){
+            (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
+            location += 1;
+        }
+        if((*Rtoken).tokenChars[0] == 0 && (*Rtoken).tokenChars[1] != '\0'){
+            //Leading Zeros error
+            return;
+        }
+        if((*Rtoken).tokenChars[len1+len2 - 1] == 0){
+            //Trailing zeros error
+            return;
+        }
+        if(len3 > 2){
+            if((*Rtoken).tokenChars[len1+len2 + len3 - 2] == 0){
+                //Leading Zero error
+                return;
+            }
+        }
+        (*Rtoken).tokenChars[location] = '\0';
+        (*Rtoken).atribute = 0;
+        (*Rtoken).token = REAL;
+    }
+    else if(len1 > 0){
+        int location = 0;
+        while((location + backPosition) < forwadPosition){
+            (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
+            location += 1;
+        }
+        if((*Rtoken).tokenChars[0] == 0){
+            //Leading Zeros error
+            return;
+        }
+
+        (*Rtoken).tokenChars[location] = '\0';
+        (*Rtoken).atribute = 0;
+        (*Rtoken).token = INT;
+    }
+
+    //end
     backPosition = forwadPosition;
 }
