@@ -12,6 +12,7 @@ struct SymbolTable *startSymbol;
 #include "Analyizer/MainAnalyzer.h"
 #include "Analyizer/Print_Tokens/PrintHandler.h"
 
+#define EOF 15
 
 int main()
 {
@@ -26,7 +27,7 @@ int main()
     remove("ListingFile.txt");
     remove("TokenFile.txt");
 
-    readPtr = fopen("test2.pas","r");
+    readPtr = fopen("fib.pas","r");
     writePtr = fopen("ListingFile.txt", "a");
     tokenWrite = fopen("TokenFile.txt", "a");
 
@@ -101,6 +102,12 @@ int main()
         //fputs(readingBuff, writePtr);
         currLine++;
     }
+    returnedTokenobj.atribute = 0;
+    returnedTokenobj.token = EOF;
+    strcpy(returnedTokenobj.tokenChars, "EOF");
+    sprintf(lineNum, "%d", currLine);
+    printToken(returnedToken, lineNum, tokenWrite);
+
     //write what to do for end of file, generate token and send to analyzer
 
     fclose(writePtr);

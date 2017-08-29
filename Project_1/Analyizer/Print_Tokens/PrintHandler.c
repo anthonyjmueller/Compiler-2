@@ -98,6 +98,18 @@ void printToken(struct TokenReturn *currToken, char lineNum[], FILE *tokenFile){
         fprintf(tokenFile, "         ");
         fprintf(tokenFile, "NOT");
     }
+    else if((*currToken).token == 13){ // totaling 12
+        fprintf(tokenFile, "        ");
+        fprintf(tokenFile, "PUNC");
+    }
+    else if((*currToken).token == 14){ // totaling 12
+        fprintf(tokenFile, "    ");
+        fprintf(tokenFile, "ASSIGNOP");
+    }
+    else if((*currToken).token == 15){ // totaling 12
+        fprintf(tokenFile, "         ");
+        fprintf(tokenFile, "EOF");
+    }
     fprintf(tokenFile, "                 ");
 
 

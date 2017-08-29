@@ -14,6 +14,9 @@
 #define TYPE 10
 #define FUNCTION 11
 #define NOT 12
+#define PUNC 13
+#define ASSIGNOP 14
+#define EOF 15
 
 
 #include "./MainAnalyzer.h"
@@ -43,6 +46,10 @@ void analyzer(char readingBuffer[77], struct TokenReturn *Rtoken){// int *forwad
     return;
   }
   words(readingBuffer, Rtoken);
+  if((*Rtoken).token != 0){
+    return;
+  }
+  catchAll(readingBuffer, Rtoken);
   if((*Rtoken).token != 0){
     return;
   }
@@ -138,16 +145,16 @@ void grouping (char readingBuffer[77], struct TokenReturn *Rtoken){
         strcpy((*Rtoken).tokenChars,")");
         forwadPosition += 1;
     }
-    else if(readingBuffer[forwadPosition] == 123){ //  (
+    else if(readingBuffer[forwadPosition] == 91){ //  (
         (*Rtoken).atribute = 2;
         (*Rtoken).token = GROUPING;
-        strcpy((*Rtoken).tokenChars,"{");
+        strcpy((*Rtoken).tokenChars,"[");
         forwadPosition += 1;
     }
-    else if(readingBuffer[forwadPosition] == 125){ //  )
+    else if(readingBuffer[forwadPosition] == 93){ //  )
         (*Rtoken).atribute = 3;
         (*Rtoken).token = GROUPING;
-        strcpy((*Rtoken).tokenChars,"}");
+        strcpy((*Rtoken).tokenChars,"]");
         forwadPosition += 1;
     }
     backPosition = forwadPosition;
@@ -164,6 +171,10 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
 
     if(readingBuffer[forwadPosition] == 46){ //IF Real and not int
         forwadPosition += 1;
+        if(readingBuffer[forwadPosition] == 46){
+            forwadPosition -= 1;
+            goto exitReal;
+        }
         while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
             forwadPosition += 1;
         }
@@ -176,7 +187,7 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
             len3 = forwadPosition - len1 - len2 - backPosition;
         }
     }
-
+    exitReal:;
     //Error checking
     if(len1 > 10){
         // Print error thingy
@@ -352,5 +363,51 @@ void words(char readingBuffer[77], struct TokenReturn *Rtoken) {
             return;
         }
     }
+}
 
+void catchAll(char readingBuffer[77], struct TokenReturn *Rtoken){
+    if(readingBuffer[forwadPosition] == 46){ // .
+        forwadPosition += 1;
+        if(readingBuffer[forwadPosition] == 46){ //  (
+            (*Rtoken).atribute = 2;
+            (*Rtoken).token = ARRAY;
+            strcpy((*Rtoken).tokenChars,"..");
+            forwadPosition += 1;
+            backPosition = forwadPosition;
+            return;
+        }
+        (*Rtoken).atribute = 0;
+        (*Rtoken).token = PUNC;
+        strcpy((*Rtoken).tokenChars,".");
+        return;
+    }
+    else if(readingBuffer[forwadPosition] == 58){ //  )
+        forwadPosition += 1;
+        if(readingBuffer[forwadPosition] == 61){
+            (*Rtoken).atribute = 0;
+            (*Rtoken).token = ASSIGNOP;
+            strcpy((*Rtoken).tokenChars,":=");
+            forwadPosition += 1;
+            backPosition = forwadPosition;
+            return;
+        }
+        (*Rtoken).atribute = 2;
+        (*Rtoken).token = TYPE;
+        strcpy((*Rtoken).tokenChars,":");
+        return;
+    }
+    else if(readingBuffer[forwadPosition] == 44){
+        (*Rtoken).atribute = 1;
+        (*Rtoken).token = PUNC;
+        strcpy((*Rtoken).tokenChars,",");
+        forwadPosition += 1;
+        return;
+    }
+    else if(readingBuffer[forwadPosition] == 59){
+        (*Rtoken).atribute = 2;
+        (*Rtoken).token = PUNC;
+        strcpy((*Rtoken).tokenChars,";");
+        forwadPosition += 1;
+        return;
+    }
 }
