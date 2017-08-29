@@ -1,78 +1,74 @@
-1.     * Project: TestProg
-2.     * User: Anthony
-3.     * Date: 8/24/2016
-4.     *)
-5.    program test2;
-6.    var x: Integer = 0;
-7.    var y: Integer = 0;
-8.    
-9.    function doublenum(a : Integer): Integer;
-10.   begin
-11.       a := a * 2;
-12.   doublenum := a;
-13.   end;
-14.   
-15.   function halfnum(a : Integer): Integer;
-16.   var b: Double;
-17.   begin
-18.       b := a / 2;
-19.       a := Round(b);
-20.       halfnum := a;
-21.   end;
-22.   
-23.   function divByFive( a : Integer): Integer;
-24.   begin
-25.       if a mod 5 = 0 then divByFive:= a
-26.       else divByFive := divByFive( a + 3)
-27.   end;
-28.   
-29.   function divBySeventeen( a : Integer): Integer;
-30.   begin
-31.       if a mod 17 = 0 then divBySeventeen:= a
-32.       else divBySeventeen := divBySeventeen( a + 3)
-33.   end;
-34.   
-35.   begin
-36.   writeln('test');
-37.       x := 136;
-38.       y := 7389;
-39.       writeln(x);
-40.       writeln(y);
-41.       x := doublenum(x);
-42.       writeLn(x);
-43.       x := halfnum(x);
+1.    program test2;
+2.    var x: Integer = 0;
+3.    var y: Integer = 0;
+4.    
+5.    function doublenum(a : Integer): Integer;
+6.    begin
+7.        a := a * 2;
+8.    doublenum := a;
+9.    end;
+10.   
+11.   function halfnum(a : Integer): Integer;
+12.   var b: Double;
+13.   begin
+14.       b := a / 2;
+15.       a := Round(b);
+16.       halfnum := a;
+17.   end;
+18.   
+19.   function divByFive( a : Integer): Integer;
+20.   begin
+21.       if a mod 5 = 0 then divByFive:= a
+22.       else divByFive := divByFive( a + 3)
+23.   end;
+24.   
+25.   function divBySeventeen( a : Integer): Integer;
+26.   begin
+27.       if a mod 17 = 0 then divBySeventeen:= a
+28.       else divBySeventeen := divBySeventeen( a + 3)
+29.   end;
+30.   
+31.   begin
+32.   writeln('test');
+33.       x := 136;
+34.       y := 7389;
+35.       writeln(x);
+36.       writeln(y);
+37.       x := doublenum(x);
+38.       writeLn(x);
+39.       x := halfnum(x);
+40.       writeln(x);
+41.       x := divByFive(x);
+42.       writeln(x);
+43.       x:= divBySeventeen(x);
 44.       writeln(x);
-45.       x := divByFive(x);
-46.       writeln(x);
-47.       x:= divBySeventeen(x);
-48.       writeln(x);
-49.       ReadLn();
-50.   end.
-51.   
-52.   +
-53.   -
-54.   =
-55.   <
-56.   >
-57.   <=
-58.   >=
-59.   *
-60.   /
-61.   (
-62.   )
-63.   {
-64.   }
-65.   1
-66.   12
-67.   123
-68.   1234
-69.   12345
-70.   123456
-71.   1234567
-72.   12345678
-73.   123456789
-74.   1.23
-75.   12.34
-76.   123.456
-77.   1234.5678
-78.   12345.6789
+45.       ReadLn();
+46.   end.
+47.   
+48.   +
+49.   -
+50.   =
+51.   <
+52.   >
+53.   <=
+54.   >=
+55.   *
+56.   /
+57.   (
+58.   )
+59.   {
+60.   }
+61.   1
+62.   12
+63.   123
+64.   1234
+65.   12345
+66.   123456
+67.   1234567
+68.   12345678
+69.   123456789
+70.   1.23
+71.   12.34
+72.   123.456
+73.   1234.5678
+74.   12345.6789

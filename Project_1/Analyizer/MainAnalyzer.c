@@ -8,6 +8,12 @@
 #define GROUPING 4
 #define INT 5
 #define REAL 6
+#define CONTROL 7
+#define VAR 8
+#define ARRAY 9
+#define TYPE 10
+#define FUNCTION 11
+#define NOT 12
 
 
 #include "./MainAnalyzer.h"
@@ -33,6 +39,10 @@ void analyzer(char readingBuffer[77], struct TokenReturn *Rtoken){// int *forwad
     return;
   }
   numbers(readingBuffer, Rtoken);
+  if((*Rtoken).token != 0){
+    return;
+  }
+  words(readingBuffer, Rtoken);
   if((*Rtoken).token != 0){
     return;
   }
@@ -143,7 +153,7 @@ void grouping (char readingBuffer[77], struct TokenReturn *Rtoken){
     backPosition = forwadPosition;
 }
 
-/*** add error hadeling ***/
+/*** handles numbers and things [add error hadeling] ***/
 void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
     while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
         forwadPosition += 1;
@@ -230,4 +240,117 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
 
     //end
     backPosition = forwadPosition;
+}
+
+/** Handle words and things [Gets word object, add comparisions and Error checking]**/
+
+void words(char readingBuffer[77], struct TokenReturn *Rtoken) {
+    char tempWord[75];
+    if ((readingBuffer[forwadPosition] >= 65 && readingBuffer[forwadPosition] <= 90) || (readingBuffer[forwadPosition] >= 97 && readingBuffer[forwadPosition] <= 122)){ // Checks for first digit of word
+        int location = 0;
+        while((readingBuffer[forwadPosition] >= 65 && readingBuffer[forwadPosition] <= 90) || (readingBuffer[forwadPosition] >= 97 && readingBuffer[forwadPosition] <= 122) || (readingBuffer[forwadPosition] >= 49 && readingBuffer[forwadPosition] <= 57)){//checks of letter or digit
+            tempWord[location] = readingBuffer[forwadPosition];
+            forwadPosition += 1;
+            location += 1;
+        }
+        tempWord[location] = '\0';
+        printf(tempWord);
+        backPosition = forwadPosition;
+        struct ReserveWord* currRes;
+        struct SymbolTable* currSymbol;
+        currRes = startReserve;
+
+        do{
+            if (strcmp((*currRes).resWord,tempWord) == 0){
+                (*Rtoken).atribute = (*currRes).atribute;
+                if(strcmp((*currRes).token, "CONTROL") == 0){
+                    (*Rtoken).token = CONTROL;
+                }
+                else if(strcmp((*currRes).token, "VAR") == 0){
+                    (*Rtoken).token = VAR;
+                }
+                else if(strcmp((*currRes).token, "ARRAY") == 0){
+                    (*Rtoken).token = ARRAY;
+                }
+                else if(strcmp((*currRes).token, "TYPE") == 0){
+                    (*Rtoken).token = TYPE;
+                }
+                else if(strcmp((*currRes).token, "FUNCTION") == 0){
+                    (*Rtoken).token = FUNCTION;
+                }
+                else if(strcmp((*currRes).token, "MULOP") == 0){
+                    (*Rtoken).token = MULOP;
+                }
+                else if(strcmp((*currRes).token, "FUNCTION") == 0){
+                    (*Rtoken).token = FUNCTION;
+                }
+                else if(strcmp((*currRes).token, "NOT") == 0){
+                    (*Rtoken).token = NOT;
+                }
+                else if(strcmp((*currRes).token, "ADDOP") == 0){
+                    (*Rtoken).token = ADDOP;
+                }
+                strcpy((*Rtoken).tokenChars, tempWord);
+                backPosition = forwadPosition;
+                return;
+            }
+            currRes = (*currRes).next;
+        } while((*currRes).next != NULL);
+        //Checks tail
+        if (strcmp((*currRes).resWord,tempWord) == 0){
+            (*Rtoken).atribute = (*currRes).atribute;
+            (*Rtoken).token = (*currRes).token;
+            strcpy((*Rtoken).tokenChars, tempWord);
+            backPosition = forwadPosition;
+            return;
+        }
+
+        //Check in Symbol Table
+        currSymbol = startSymbol; //Broken, change attribute and token for Rtoken
+        if (varCountID == 10){ //No entries
+            strcpy((*currSymbol).name, tempWord);
+            strcpy((*Rtoken).tokenChars, tempWord);
+            (*currSymbol).attribute = varCountID;
+            (*Rtoken).atribute = varCountID;
+            (*Rtoken).token = VAR;
+            backPosition = forwadPosition;
+            varCountID += 1;
+            return;
+        }
+        else{
+            while((*currSymbol).next != NULL){
+                if(strcmp((*currSymbol).name, tempWord) == 0 ){
+                    strcpy((*Rtoken).tokenChars, tempWord);
+                    (*Rtoken).atribute = (*currSymbol).attribute;
+                    (*Rtoken).token = VAR;
+                    backPosition = forwadPosition;
+                    return;
+                }
+                currSymbol = (*currSymbol).next;
+            }
+            if(strcmp((*currSymbol).name, tempWord) == 0){
+                strcpy((*Rtoken).tokenChars, tempWord);
+                (*Rtoken).atribute = (*currSymbol).attribute;
+                (*Rtoken).token = VAR;
+                backPosition = forwadPosition;
+                return;
+            }
+
+
+            struct SymbolTable *tempCurrSym;
+            tempCurrSym = malloc(sizeof(struct SymbolTable));
+            SymbolTableInit(tempCurrSym);
+
+            strcpy((*tempCurrSym).name, tempWord);
+            strcpy((*Rtoken).tokenChars, tempWord);
+            (*tempCurrSym).attribute = varCountID;
+            (*Rtoken).atribute = varCountID;
+            (*Rtoken).token = VAR;
+            (*currSymbol).next = tempCurrSym;
+            backPosition = forwadPosition;
+            varCountID += 1;
+            return;
+        }
+    }
+
 }

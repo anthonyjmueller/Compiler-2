@@ -1,8 +1,3 @@
-(*
- * Project: TestProg
- * User: Anthony
- * Date: 8/24/2016
- *)
 program test2;
 var x: Integer = 0;
 var y: Integer = 0;

@@ -74,6 +74,30 @@ void printToken(struct TokenReturn *currToken, char lineNum[], FILE *tokenFile){
         fprintf(tokenFile, "        ");
         fprintf(tokenFile, "REAL");
     }
+    else if((*currToken).token == 7){ // totaling 12
+        fprintf(tokenFile, "     ");
+        fprintf(tokenFile, "CONTROL");
+    }
+    else if((*currToken).token == 8){ // totaling 12
+        fprintf(tokenFile, "         ");
+        fprintf(tokenFile, "VAR");
+    }
+    else if((*currToken).token == 9){ // totaling 12
+        fprintf(tokenFile, "       ");
+        fprintf(tokenFile, "ARRAY");
+    }
+    else if((*currToken).token == 10){ // totaling 12
+        fprintf(tokenFile, "        ");
+        fprintf(tokenFile, "TYPE");
+    }
+    else if((*currToken).token == 11){ // totaling 12
+        fprintf(tokenFile, "    ");
+        fprintf(tokenFile, "FUNCTION");
+    }
+    else if((*currToken).token == 12){ // totaling 12
+        fprintf(tokenFile, "         ");
+        fprintf(tokenFile, "NOT");
+    }
     fprintf(tokenFile, "                 ");
 
 

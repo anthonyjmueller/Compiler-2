@@ -12,7 +12,7 @@ if	        CONTROL     4
 then	    CONTROL	    5
 else	    CONTROL	    6
 while	    CONTROL	    7
-do	        DO	        0
+do	        CONTROL	    8
 div	        MULOP	    0
 mod	        MULOP	    1
 and	        MULOP	    2

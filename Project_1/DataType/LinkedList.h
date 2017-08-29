@@ -10,7 +10,8 @@ struct ReserveWord {
 };
 
 struct SymbolTable {
-    char name[10];
+    char name[75];
+    int attribute;
     struct SymbolTable *next;
 };
 

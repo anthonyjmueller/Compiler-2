@@ -4,6 +4,7 @@
 
 int forwadPosition = 0;
 int backPosition = 0;
+int varCountID = 10;
 struct ReserveWord *startReserve;
 struct SymbolTable *startSymbol;
 
@@ -29,6 +30,9 @@ int main()
     writePtr = fopen("ListingFile.txt", "a");
     tokenWrite = fopen("TokenFile.txt", "a");
 
+    startSymbol = malloc(sizeof(struct SymbolTable));
+    SymbolTableInit(startSymbol);
+
     startReserve = ReserveWordListCreator();
     struct ReserveWord tempIter;
     tempIter = *startReserve;
@@ -46,18 +50,13 @@ int main()
         printf("\n");
     }
 
-//    struct ReserveWord *temp = startReserve;
-//    while ( (*temp).next != NULL ){
-//        printf((*temp).resWord);
-//        temp = (*temp).next;
-//    }
     //initializes Token return struct
     struct TokenReturn returnedTokenobj;
     struct TokenReturn* returnedToken = &returnedTokenobj;
     TokenReturnInit(returnedToken);
 
 
-    fgets(readingBuff, 72, readPtr);
+    //fgets(readingBuff, 72, readPtr);
 
     while(fgets(readingBuff, 72, readPtr) != NULL){
 
