@@ -50,6 +50,7 @@
 		<Unit filename="ListingFile.txt" />
 		<Unit filename="Reserve_word_list.txt" />
 		<Unit filename="TokenFile.txt" />
+		<Unit filename="errors.pas" />
 		<Unit filename="fib.pas" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
