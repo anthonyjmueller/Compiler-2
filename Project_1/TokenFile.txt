@@ -223,5 +223,5 @@ Line             Lexeme        Token Type       Token Attribute
    42                  ]         GROUPING                     3
    42                  )         GROUPING                     1
    43                end          CONTROL                     3
-   43                  .             REAL                     0
+   43                  .             PUNC                     0
    44                EOF              EOF                     0

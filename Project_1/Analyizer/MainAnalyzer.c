@@ -17,6 +17,7 @@
 #define PUNC 13
 #define ASSIGNOP 14
 #define EOF 15
+#define LEXERROR 16
 
 
 #include "./MainAnalyzer.h"
@@ -25,6 +26,15 @@ void analyzer(char readingBuffer[77], struct TokenReturn *Rtoken){// int *forwad
   (*Rtoken).token = 0;
   (*Rtoken).atribute = NULL;
   whiteSpace(readingBuffer, Rtoken, forwadPosition, backPosition);
+
+  words(readingBuffer, Rtoken);
+  if((*Rtoken).token != 0){
+    return;
+  }
+  numbers(readingBuffer, Rtoken);
+  if((*Rtoken).token != 0){
+    return;
+  }
   addop(readingBuffer, Rtoken);
   if((*Rtoken).token != 0){
     return;
@@ -41,16 +51,17 @@ void analyzer(char readingBuffer[77], struct TokenReturn *Rtoken){// int *forwad
   if((*Rtoken).token != 0){
     return;
   }
-  numbers(readingBuffer, Rtoken);
-  if((*Rtoken).token != 0){
-    return;
-  }
-  words(readingBuffer, Rtoken);
-  if((*Rtoken).token != 0){
-    return;
-  }
   catchAll(readingBuffer, Rtoken);
   if((*Rtoken).token != 0){
+    return;
+  }
+  if((*Rtoken).token == 0 && readingBuffer[forwadPosition] != '\n'){
+    (*Rtoken).tokenChars[0]= readingBuffer[forwadPosition];
+    (*Rtoken).tokenChars[1] = '\0';
+    (*Rtoken).atribute = 0;
+    (*Rtoken).token = LEXERROR;
+    forwadPosition += 1;
+    backPosition += 1;
     return;
   }
 }
@@ -179,7 +190,7 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
             forwadPosition += 1;
         }
         len2 = forwadPosition - len1 - backPosition;
-        if(readingBuffer[forwadPosition] >= 69){
+        if(readingBuffer[forwadPosition] == 69){
             forwadPosition += 1;
             while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
                 forwadPosition += 1;
@@ -189,47 +200,91 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
     }
     exitReal:;
     //Error checking
-    if(len1 > 10){
-        // Print error thingy
-        backPosition = forwadPosition;
-        return;
-    }
-    else if(len1 > 5 && len2 > 0){
-        //Error first part of real too long
-        backPosition = forwadPosition;
-        return;
-    }
-    else if(len2 > 6){
-        //Error second part of real too long
-        backPosition = forwadPosition;
-        return;
-    }
-    else if(len3 > 3){
-        //Error third part of real too long
-        backPosition = forwadPosition;
-        return;
-    }
-    else if(len2 > 0){
+    if(len1 > 10  && len2 == 0){
         int location = 0;
         while((location + backPosition) < forwadPosition){
             (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
             location += 1;
         }
+        (*Rtoken).tokenChars[location] = '\0';
+        (*Rtoken).atribute = 2;
+        (*Rtoken).token = LEXERROR;
+        backPosition = forwadPosition;
+        return;
+    }
+    else if(len1 == 0 && len2 == 1){
+        forwadPosition = backPosition;
+        return;
+    }
+    else if(len1 > 5 && len2 > 0){
+        //Error first part of real too long
+        int location = 0;
+        while((location + backPosition) < forwadPosition){
+            (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
+            location += 1;
+        }
+        (*Rtoken).tokenChars[location] = '\0';
+        (*Rtoken).atribute = 5;
+        (*Rtoken).token = LEXERROR;
+        backPosition = forwadPosition;
+        return;
+        }
+    else if(len2 > 6){
+        //Error second part of real too long
+        int location = 0;
+        while((location + backPosition) < forwadPosition){
+            (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
+            location += 1;
+        }
+        (*Rtoken).tokenChars[location] = '\0';
+        (*Rtoken).atribute = 6;
+        (*Rtoken).token = LEXERROR;
+        backPosition = forwadPosition;
+        return;
+    }
+    else if(len3 > 3){
+        //Error third part of real too long
+        int location = 0;
+        while((location + backPosition) < forwadPosition){
+            (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
+            location += 1;
+        }
+        (*Rtoken).tokenChars[location] = '\0';
+        (*Rtoken).atribute = 7;
+        (*Rtoken).token = LEXERROR;
+        backPosition = forwadPosition;
+        return;
+    }
+    else if(len2 > 0){ //Hadle a real that is the correct length
+        int location = 0;
+        while((location + backPosition) < forwadPosition){
+            (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
+            location += 1;
+        }
+        (*Rtoken).tokenChars[location] = '\0';
         if((*Rtoken).tokenChars[0] == 0 && (*Rtoken).tokenChars[1] != '\0'){
             //Leading Zeros error
+            (*Rtoken).atribute = 8;
+            (*Rtoken).token = LEXERROR;
+            backPosition = forwadPosition;
             return;
         }
-        if((*Rtoken).tokenChars[len1+len2 - 1] == 0){
+        if((*Rtoken).tokenChars[len1+len2 - 1] == '0'){
             //Trailing zeros error
+            (*Rtoken).atribute = 9;
+            (*Rtoken).token = LEXERROR;
+            backPosition = forwadPosition;
             return;
         }
         if(len3 > 2){
-            if((*Rtoken).tokenChars[len1+len2 + len3 - 2] == 0){
+            if((*Rtoken).tokenChars[len1+len2 + len3 - 2] == '0'){
                 //Leading Zero error
+                (*Rtoken).atribute = 4;
+                (*Rtoken).token = LEXERROR;
+                backPosition = forwadPosition;
                 return;
             }
         }
-        (*Rtoken).tokenChars[location] = '\0';
         (*Rtoken).atribute = 0;
         (*Rtoken).token = REAL;
     }
@@ -239,12 +294,15 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
             (*Rtoken).tokenChars[location] = readingBuffer[location + backPosition];
             location += 1;
         }
-        if((*Rtoken).tokenChars[0] == 0){
+        (*Rtoken).tokenChars[location] = '\0';
+        if((*Rtoken).tokenChars[0] == '0' && len1 != 1){
             //Leading Zeros error
+            (*Rtoken).atribute = 3;
+            (*Rtoken).token = LEXERROR;
+            backPosition = forwadPosition;
             return;
         }
 
-        (*Rtoken).tokenChars[location] = '\0';
         (*Rtoken).atribute = 0;
         (*Rtoken).token = INT;
     }
@@ -265,6 +323,14 @@ void words(char readingBuffer[77], struct TokenReturn *Rtoken) {
             location += 1;
         }
         tempWord[location] = '\0';
+        int tempLeng = forwadPosition - backPosition - 1;
+        if(tempLeng > 10){
+            strcpy((*Rtoken).tokenChars, tempWord);
+            (*Rtoken).atribute = 1;
+            (*Rtoken).token = LEXERROR;
+            backPosition = forwadPosition;
+            return;
+        }
         printf(tempWord);
         backPosition = forwadPosition;
         struct ReserveWord* currRes;

@@ -7,6 +7,7 @@ int backPosition = 0;
 int varCountID = 10;
 struct ReserveWord *startReserve;
 struct SymbolTable *startSymbol;
+FILE *writePtr;
 
 #include "DataType/LinkedList.h"
 #include "Analyizer/MainAnalyzer.h"
@@ -18,7 +19,6 @@ int main()
 {
 
     FILE *readPtr;
-    FILE *writePtr;
     FILE *tokenWrite;
     char readingBuff[77];
     char lineNum[5];

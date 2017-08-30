@@ -1,6 +1,8 @@
 #ifndef PRINTHANDLER
 #define PRINTHANDLER
 
+extern FILE *writePtr;
+
 void ListingPrinter(struct TokenReturn*, int);
 
 void InitTokenFile(FILE*);
