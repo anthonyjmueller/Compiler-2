@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="fib.pas" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -20,6 +21,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="fib.pas " />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -31,23 +33,26 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Analyizer/MainAnalyzer.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Analyizer/MainAnalyzer.h" />
-		<Unit filename="Analyizer/Print_Tokens/PrintHandler.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Analyizer/Print_Tokens/PrintHandler.h" />
 		<Unit filename="Compiler.cbp" />
 		<Unit filename="Compiler.depend" />
 		<Unit filename="Compiler.layout" />
-		<Unit filename="DataType/LinkedList.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="DataType/LinkedList.h" />
 		<Unit filename="Errors.txt" />
+		<Unit filename="LinkedList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LinkedList.h" />
 		<Unit filename="ListingFile.txt" />
+		<Unit filename="MainAnalyzer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="MainAnalyzer.h" />
+		<Unit filename="PrintHandler.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PrintHandler.h" />
 		<Unit filename="Reserve_word_list.txt" />
 		<Unit filename="TokenFile.txt" />
 		<Unit filename="errors.pas" />

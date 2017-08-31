@@ -9,14 +9,20 @@ struct ReserveWord *startReserve;
 struct SymbolTable *startSymbol;
 FILE *writePtr;
 
-#include "DataType/LinkedList.h"
-#include "Analyizer/MainAnalyzer.h"
-#include "Analyizer/Print_Tokens/PrintHandler.h"
+#include "LinkedList.h"
+#include "MainAnalyzer.h"
+#include "PrintHandler.h"
 
-#define EOF 15
 
-int main()
-{
+int main(int argc, char *argv[]){
+
+    char fileName[100];
+    if (argc == 2){
+        strcpy(fileName, argv[1]);
+    }
+    else{
+        exit(-1);
+    }
 
     FILE *readPtr;
     FILE *tokenWrite;
@@ -27,7 +33,7 @@ int main()
     remove("ListingFile.txt");
     remove("TokenFile.txt");
 
-    readPtr = fopen("fib.pas","r");
+    readPtr = fopen(fileName,"r");
     writePtr = fopen("ListingFile.txt", "a");
     tokenWrite = fopen("TokenFile.txt", "a");
 
@@ -103,7 +109,7 @@ int main()
         currLine++;
     }
     returnedTokenobj.atribute = 0;
-    returnedTokenobj.token = EOF;
+    returnedTokenobj.token = 15;
     strcpy(returnedTokenobj.tokenChars, "EOF");
     sprintf(lineNum, "%d", currLine);
     printToken(returnedToken, lineNum, tokenWrite);
@@ -111,4 +117,5 @@ int main()
     //write what to do for end of file, generate token and send to analyzer
 
     fclose(writePtr);
+    return 1;
 }
