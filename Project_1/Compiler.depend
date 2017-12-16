@@ -34,3 +34,55 @@
 
 1498337121 c:\users\anthony\desktop\compiler project\project 0\compiler\analyizer\print_tokens\printhandler.h
 
+1504118665 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../DataType/LinkedList.h"
+	"./MainAnalyzer.h"
+
+1503988054 c:\users\anthony\desktop\compiler\compiler-2\project_1\datatype\linkedlist.h
+	<string.h>
+
+1507246153 c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.h
+
+1504118546 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\print_tokens\printhandler.c
+	<stdlib.h>
+	<stdio.h>
+	"../../DataType/LinkedList.h"
+	"./PrintHandler.h"
+
+1504118222 c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\print_tokens\printhandler.h
+
+1503683602 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\datatype\linkedlist.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"./LinkedList.h"
+
+1513460186 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"MainAnalyzer.h"
+	"PrintHandler.h"
+	"Analyizer/AnalyzerCaller.h"
+
+1507246153 c:\users\anthony\desktop\compiler\compiler-2\project_1\linkedlist.h
+	<string.h>
+
+1507246153 c:\users\anthony\desktop\compiler\compiler-2\project_1\mainanalyzer.h
+
+1507246153 c:\users\anthony\desktop\compiler\compiler-2\project_1\printhandler.h
+
+1513460164 c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\analyzercaller.h
+
+1513460164 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\analyzercaller.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../DataType/LinkedList.h"
+	"./MainAnalyzer.h"
+	"./AnalyzerCaller.h"
+

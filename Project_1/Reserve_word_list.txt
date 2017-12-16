@@ -18,4 +18,5 @@ mod	        MULOP	    1
 and	        MULOP	    2
 not	        NOT	        0
 or	        ADDOP	    0
+call		CONTROL	    9
 
