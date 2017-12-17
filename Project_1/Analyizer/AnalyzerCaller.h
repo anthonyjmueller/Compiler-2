@@ -1,7 +1,7 @@
 #ifndef ANALYZERCALLER
 #define ANALYZERCALLER
 
-void analyzerCaller(struct TokenReturn*, FILE *writePtr, FILE *tokenWrite, FILE *readPtr);// int*, int*);
+void analyzerCaller(struct TokenReturn*);// int*, int*);
 
 extern int forwadPosition;
 extern int backPosition;
@@ -11,5 +11,8 @@ extern int varCountID;
 extern char lineNum[5];
 extern int currLine;
 extern char readingBuff[77];
+extern FILE *writePtr;
+extern FILE *readPtr;
+extern FILE *tokenWrite;
 
 #endif // ANALYZERCALLER_H_INCLUDED

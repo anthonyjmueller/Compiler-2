@@ -8,14 +8,19 @@ int varCountID = 10;
 char readingBuff[77];
 char lineNum[5];
 int currLine = 1;
+int match_results = 0;
 struct ReserveWord *startReserve;
 struct SymbolTable *startSymbol;
+struct TokenReturn* returnedToken;
 FILE *writePtr;
+FILE *readPtr;
+FILE *tokenWrite;
 
 #include "LinkedList.h"
 #include "MainAnalyzer.h"
 #include "PrintHandler.h"
 #include "Analyizer/AnalyzerCaller.h"
+#include "Parser/Productions.h"
 
 
 int main(int argc, char *argv[]){
@@ -27,9 +32,6 @@ int main(int argc, char *argv[]){
     else{
         exit(-1);
     }
-
-    FILE *readPtr;
-    FILE *tokenWrite;
 
     remove("ListingFile.txt");
     remove("TokenFile.txt");
@@ -60,14 +62,16 @@ int main(int argc, char *argv[]){
 
     //initializes Token return struct
     struct TokenReturn returnedTokenobj;
-    struct TokenReturn* returnedToken = &returnedTokenobj;
+    returnedToken = malloc(sizeof(struct TokenReturn));
+    *returnedToken = returnedTokenobj;
     TokenReturnInit(returnedToken);
 
     fgets(readingBuff, 72, readPtr);
     //fgets(readingBuff, 72, readPtr);
-    do{
-        analyzerCaller(returnedToken, writePtr, tokenWrite, readPtr);
-    }while((*returnedToken).token != 15);
+   // do{
+    //    analyzerCaller(returnedToken);
+    //}while((*returnedToken).token != 15);
+    program();
 
 
     //write what to do for end of file, generate token and send to analyzer

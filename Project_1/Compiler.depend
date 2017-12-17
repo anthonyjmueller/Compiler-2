@@ -34,7 +34,7 @@
 
 1498337121 c:\users\anthony\desktop\compiler project\project 0\compiler\analyizer\print_tokens\printhandler.h
 
-1504118665 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.c
+1513531767 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\mainanalyzer.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -60,7 +60,7 @@
 	<string.h>
 	"./LinkedList.h"
 
-1513460186 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\main.c
+1513527125 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -68,6 +68,7 @@
 	"MainAnalyzer.h"
 	"PrintHandler.h"
 	"Analyizer/AnalyzerCaller.h"
+	"Parser/Productions.h"
 
 1507246153 c:\users\anthony\desktop\compiler\compiler-2\project_1\linkedlist.h
 	<string.h>
@@ -76,13 +77,73 @@
 
 1507246153 c:\users\anthony\desktop\compiler\compiler-2\project_1\printhandler.h
 
-1513460164 c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\analyzercaller.h
+1513476733 c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\analyzercaller.h
 
-1513460164 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\analyzercaller.c
+1513528874 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\analyizer\analyzercaller.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../DataType/LinkedList.h"
 	"./MainAnalyzer.h"
 	"./AnalyzerCaller.h"
+
+1513531171 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\program.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"Productions.h"
+	"../Analyizer/AnalyzerCaller.h"
+	"../DataType/LinkedList.h"
+
+1513532680 c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\productions.h
+	<stdio.h>
+	<stdlib.h>
+	"../DataType/LinkedList.h"
+
+1513530291 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\match.c
+	<stdlib.h>
+	<stdio.h>
+	"Productions.h"
+	"../Analyizer/AnalyzerCaller.h"
+	"../DataType/LinkedList.h"
+
+1513530541 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\program_tail.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"Productions.h"
+	"../Analyizer/AnalyzerCaller.h"
+	"../DataType/LinkedList.h"
+
+1513530553 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\program_tail2.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"Productions.h"
+	"../Analyizer/AnalyzerCaller.h"
+	"../DataType/LinkedList.h"
+
+1513533041 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\identifier_list.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"Productions.h"
+	"../Analyizer/AnalyzerCaller.h"
+	"../DataType/LinkedList.h"
+
+1513533041 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\identifier_list_tail.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"Productions.h"
+	"../Analyizer/AnalyzerCaller.h"
+	"../DataType/LinkedList.h"
+
+1513533041 source:c:\users\anthony\desktop\compiler\compiler-2\project_1\parser\declarations.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"Productions.h"
+	"../Analyizer/AnalyzerCaller.h"
+	"../DataType/LinkedList.h"
 

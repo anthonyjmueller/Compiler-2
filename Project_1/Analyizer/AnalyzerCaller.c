@@ -6,7 +6,7 @@
 
 #include "./AnalyzerCaller.h"
 
-void analyzerCaller(struct TokenReturn *returnedToken, FILE *writePtr, FILE *tokenWrite, FILE *readPtr){
+void analyzerCaller(struct TokenReturn *returnedToken){
     startAnalyzer:;
     //Setups numbering for ListingFile
     if(forwadPosition == 0){
@@ -48,7 +48,7 @@ void analyzerCaller(struct TokenReturn *returnedToken, FILE *writePtr, FILE *tok
 
     //fputs(readingBuff, writePtr);
     if(readingBuff[forwadPosition] == '\n'){
-       currLine++;
+        currLine++;
         forwadPosition = 0;
         backPosition = 0;
         if(fgets(readingBuff, 72, readPtr) == NULL){

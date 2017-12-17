@@ -1,4 +1,5 @@
 1.    program fib(input, output);
+     SYNERROR:   Found , expected )
 2.    var excessivelyLongIntegerArrayName : array [1..12] of integer;
      LEXERROR:     ID Length exceeding 10 Characters:    excessivelyLongIntegerArrayName
 3.    

@@ -156,13 +156,13 @@ void grouping (char readingBuffer[77], struct TokenReturn *Rtoken){
         strcpy((*Rtoken).tokenChars,")");
         forwadPosition += 1;
     }
-    else if(readingBuffer[forwadPosition] == 91){ //  (
+    else if(readingBuffer[forwadPosition] == 91){ //  [
         (*Rtoken).atribute = 2;
         (*Rtoken).token = GROUPING;
         strcpy((*Rtoken).tokenChars,"[");
         forwadPosition += 1;
     }
-    else if(readingBuffer[forwadPosition] == 93){ //  )
+    else if(readingBuffer[forwadPosition] == 93){ //  ]
         (*Rtoken).atribute = 3;
         (*Rtoken).token = GROUPING;
         strcpy((*Rtoken).tokenChars,"]");
@@ -405,7 +405,7 @@ void words(char readingBuffer[77], struct TokenReturn *Rtoken) {
                 }
                 currSymbol = (*currSymbol).next;
             }
-            if(strcmp((*currSymbol).name, tempWord) == 0){
+            if(strcmp((*currSymbol).name, tempWord) == 0){ ////////checks tail
                 strcpy((*Rtoken).tokenChars, tempWord);
                 (*Rtoken).atribute = (*currSymbol).attribute;
                 (*Rtoken).token = VAR;
@@ -434,7 +434,7 @@ void words(char readingBuffer[77], struct TokenReturn *Rtoken) {
 void catchAll(char readingBuffer[77], struct TokenReturn *Rtoken){
     if(readingBuffer[forwadPosition] == 46){ // .
         forwadPosition += 1;
-        if(readingBuffer[forwadPosition] == 46){ //  (
+        if(readingBuffer[forwadPosition] == 46){ //  .
             (*Rtoken).atribute = 2;
             (*Rtoken).token = ARRAY;
             strcpy((*Rtoken).tokenChars,"..");
@@ -462,7 +462,7 @@ void catchAll(char readingBuffer[77], struct TokenReturn *Rtoken){
         strcpy((*Rtoken).tokenChars,":");
         return;
     }
-    else if(readingBuffer[forwadPosition] == 44){
+    else if(readingBuffer[forwadPosition] == 44){ // ,
         (*Rtoken).atribute = 1;
         (*Rtoken).token = PUNC;
         strcpy((*Rtoken).tokenChars,",");
