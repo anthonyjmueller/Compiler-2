@@ -8,27 +8,23 @@
 
 char expected[];
 
-void arguments(){
-    if(match(4,0) == 0){ // (
+void expression_list_tail(){
+    if(match(13, 1) == 0){ // ,
         analyzerCaller(returnedToken);
-        parameter_list();
-        if(match(4, 1) == -1){ // )
-            strcpy(expected, "')'");
-            argumentsSync();
-            goto end;
-        }
-        analyzerCaller(returnedToken);
-    }else if(match(13,2) == 0){ // ;
+        expression();
+        expression_list_tail();
+    }
+    else if(match(4,1) == 0){ // )
     }
     else{
-        strcpy(expected, "'(' or ';'");
-        argumentsSync();
+        strcpy(expected, "'(' or 'else' or ';' or 'end'");
+        expression_list_tailSync();
         goto end;
     }
 end:;
 }
 
-void argumentsSync(){
+void expression_list_tailSync(){
     fprintf(writePtr, "     SYNERROR:   Found ");
     fprintf(writePtr, (*returnedToken).tokenChars);
     fprintf(writePtr, " expected ");
@@ -38,7 +34,7 @@ void argumentsSync(){
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
             break;
-        }else if(match(13, 2) == 0){ // ;
+        }else if(match(4,1) == 0){ // )
             break;
         }
     }while(match_results == -1);

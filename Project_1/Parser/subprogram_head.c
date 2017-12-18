@@ -18,7 +18,6 @@ void subprogram_head(){
         }
         analyzerCaller(returnedToken);
         arguments();
-        analyzerCaller(returnedToken);
         if(match(13,2) == -1){ // ;
             strcpy(expected, "';'");
             subprogram_headSync();

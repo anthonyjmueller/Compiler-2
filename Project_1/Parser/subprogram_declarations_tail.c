@@ -20,7 +20,7 @@ void subprogram_declarations_tail(){
         analyzerCaller(returnedToken);
         subprogram_declarations_tail();
     }
-    else if(match(7,0) == 0){ // begin
+    else if(match(7,2) == 0){ // begin
     }
     else{
         strcpy(expected, "'procedure' or 'begin'");

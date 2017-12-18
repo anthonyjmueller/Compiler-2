@@ -10,9 +10,8 @@ char expected[];
 
 void variable_tail(){
     if(match(4,2) == 0){ // [
-        analyzerCaller(returnedToken);
-        expression();
-        analyzerCaller(returnedToken);
+            analyzerCaller(returnedToken);
+            expression();
         if(match(4, 3) == -1){ // ]
             strcpy(expected, "']'");
             variable_tailSync();

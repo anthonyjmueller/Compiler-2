@@ -10,6 +10,7 @@ char expected[];
 
 void statement_list_tail(){
     if(match(13 , 2) == 0 ){ // ;
+        analyzerCaller(returnedToken);
         statement();
         statement_list_tail();
     }else if(match(7, 3) == 0){ // end

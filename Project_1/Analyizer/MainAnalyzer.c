@@ -24,7 +24,7 @@
 
 void analyzer(char readingBuffer[77], struct TokenReturn *Rtoken){// int *forwadPosition, int *backPosition){
   (*Rtoken).token = 0;
-  (*Rtoken).atribute = NULL;
+  (*Rtoken).atribute = 0;
   whiteSpace(readingBuffer, Rtoken, forwadPosition, backPosition);
 
   words(readingBuffer, Rtoken);

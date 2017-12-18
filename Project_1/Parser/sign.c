@@ -8,27 +8,18 @@
 
 char expected[];
 
-void arguments(){
-    if(match(4,0) == 0){ // (
-        analyzerCaller(returnedToken);
-        parameter_list();
-        if(match(4, 1) == -1){ // )
-            strcpy(expected, "')'");
-            argumentsSync();
-            goto end;
-        }
-        analyzerCaller(returnedToken);
-    }else if(match(13,2) == 0){ // ;
+void sign(){
+    if(match(1,0) == 0|| match(1,1) == 0){ // + -
     }
     else{
-        strcpy(expected, "'(' or ';'");
-        argumentsSync();
+        strcpy(expected, "'+' or '-'");
+        signSync();
         goto end;
     }
 end:;
 }
 
-void argumentsSync(){
+void signSync(){
     fprintf(writePtr, "     SYNERROR:   Found ");
     fprintf(writePtr, (*returnedToken).tokenChars);
     fprintf(writePtr, " expected ");
@@ -38,7 +29,17 @@ void argumentsSync(){
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
             break;
-        }else if(match(13, 2) == 0){ // ;
+        }
+        else if(match(8, 10) == 0){ // var_id
+            break;
+        }
+        else if(match(6,0) == 0 || match(5,0) == 0){ //num
+            break;
+        }
+        else if(match(4,0) == 0){ //(
+            break;
+        }
+        else if(match(12, 0) == 0){ //(not
             break;
         }
     }while(match_results == -1);

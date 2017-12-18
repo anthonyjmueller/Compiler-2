@@ -11,7 +11,6 @@ char expected[];
 void program_tail2(){
     if(match(7, 1) == 0){ //procedure
         subprogram_declarations();
-        analyzerCaller(returnedToken);
         compound_statement();
         analyzerCaller(returnedToken);
         match(13,0); // .

@@ -18,7 +18,6 @@ void statement(){
         }
         analyzerCaller(returnedToken);
         expression();
-        analyzerCaller(returnedToken);
     }
     else if( match(7 , 9) == 0){ //call
         procedure_statement();
@@ -30,20 +29,20 @@ void statement(){
     else if( match(7 , 4) == 0 ){ //if
         analyzerCaller(returnedToken);
         expression();
-        analyzerCaller(returnedToken);
         if(match(7,5) == -1){ // then
             strcpy(expected, "'then'");
             statementSync();
             goto end;
         }
         analyzerCaller(returnedToken);
+        statement();
         statement_tail();
     }
     else if(match(7 , 7) == 0){ // while
         analyzerCaller(returnedToken);
         expression();
-        if(match(7,9) == -1){ // do
-            strcpy(expected, "'then'");
+        if(match(7,8) == -1){ // do
+            strcpy(expected, "'do'");
             statementSync();
             goto end;
         }
