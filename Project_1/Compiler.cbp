@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="fib.pas" />
 				<Compiler>
 					<Add option="-std=c99" />
 					<Add option="-g" />
@@ -33,6 +34,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Analyizer/AnalyzerCaller.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Analyizer/AnalyzerCaller.h" />
 		<Unit filename="Analyizer/MainAnalyzer.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -41,10 +46,76 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Analyizer/Print_Tokens/PrintHandler.h" />
+		<Unit filename="AnalyzerCaller.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="DataType/LinkedList.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="DataType/LinkedList.h" />
+		<Unit filename="Parser/Productions.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Parser/Program.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/Program_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/Program_tail2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/arguments.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/compound_statement.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/declarations.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/declarations_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/identifier_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/identifier_list_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/match.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/parameter_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/parameter_list_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/standard_type.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/subprogram_declaration.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/subprogram_declaration_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/subprogram_declaration_tail2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/subprogram_declarations.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/subprogram_declarations_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/subprogram_head.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/type.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

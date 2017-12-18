@@ -24,21 +24,29 @@ void program(){
         goto end;
     }
     analyzerCaller(returnedToken);
-    match(4,0); //)
+    match(4,0); //(
     if(match_results == -1){
         strcpy(expected, "'('");
         programSync();
         goto end;
     }
-    //identifier_list();
     analyzerCaller(returnedToken);
+    identifier_list();
     match(4,1); //)
     if(match_results == -1){
         strcpy(expected, "')'");
         programSync();
         goto end;
     }
-    //program_tail();
+    analyzerCaller(returnedToken);
+    match(13,2); // ;
+    if(match_results == -1){
+        strcpy(expected, "';'");
+        programSync();
+        goto end;
+    }
+    analyzerCaller(returnedToken);
+    program_tail();
     analyzerCaller(returnedToken);
     match(15,0);// EOF
     if(match_results == -1){

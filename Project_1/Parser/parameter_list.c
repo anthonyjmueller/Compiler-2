@@ -8,39 +8,28 @@
 
 char expected[];
 
-void declarations(){
-    if(match(8,0) == 0){ //var
-        analyzerCaller(returnedToken);
-        if(match(8, 10) == -1){ //var_id
-            strcpy(expected, "'var_id'");
-            declarationsSync();
-            goto end;
-        }
+void parameter_list(){
+    if(match(8,10) == 0){ // var_id
         analyzerCaller(returnedToken);
         if(match(10, 2) == -1){ // :
             strcpy(expected, "':'");
-            declarationsSync();
+            parameter_listSync();
             goto end;
         }
         analyzerCaller(returnedToken);
         type();
         analyzerCaller(returnedToken);
-        if(match(13, 2) == -1){ //var_id
-            strcpy(expected, "'var_id'");
-            declarationsSync();
-            goto end;
-        }
-        analyzerCaller(returnedToken);
-        declarations_tail();
-    }else{
-        strcpy(expected, "'var'");
-        declarationsSync();
+        parameter_list_tail();
+    }
+    else{
+        strcpy(expected, "'var_id'");
+        parameter_listSync();
         goto end;
     }
 end:;
 }
 
-void declarationsSync(){
+void parameter_listSync(){
     fprintf(writePtr, "     SYNERROR:   Found ");
     fprintf(writePtr, (*returnedToken).tokenChars);
     fprintf(writePtr, " expected ");
@@ -50,9 +39,7 @@ void declarationsSync(){
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
             break;
-        }else if(match(7, 2) == 0){ // begin
-            break;
-        }else if(match(7, 1) == 0){ // procedure
+        }else if(match(4,1) == 0){ // )
             break;
         }
     }while(match_results == -1);

@@ -8,41 +8,28 @@
 
 char expected[];
 
-void program_tail(){
+void subprogram_declaration_tail(){
     if(match(8,0) == 0){ //var
         declarations();
-        program_tail2();
+        subprogram_declaration_tail2();
     }
-    else if(match(7,1) == 0){ //procedure
+    else if(match(7, 1) == 0){ // procedure
         subprogram_declarations();
         analyzerCaller(returnedToken);
         compound_statement();
-        analyzerCaller(returnedToken);
-        match(13,0); // .
-        if(match_results == -1){
-            strcpy(expected, ".");
-            program_tailSync();
-            goto end;
-        }
     }
-    else if(match(7,2) == 0){  //begin
+    else if(match(7,2) == 0){ // begin
         compound_statement();
-        analyzerCaller(returnedToken);
-        match(13,0);
-        if(match_results == -1){
-            strcpy(expected, ".");
-            program_tailSync();
-            goto end;
-        }
-    }else{
-        strcpy(expected, "'var' or 'procedure' or 'begin'");
-        program_tailSync();
+    }
+    else{
+        strcpy(expected, "'procedure' or 'var' or 'begin'");
+        subprogram_declaration_tailSync();
         goto end;
     }
 end:;
 }
 
-void program_tailSync(){
+void subprogram_declaration_tailSync(){
     fprintf(writePtr, "     SYNERROR:   Found ");
     fprintf(writePtr, (*returnedToken).tokenChars);
     fprintf(writePtr, " expected ");
@@ -50,8 +37,9 @@ void program_tailSync(){
     fprintf(writePtr, "\n");
     do{
         analyzerCaller(returnedToken);
-        match(15,0);
-        if(match_results == 0){
+        if(match(15,0) == 0){
+            break;
+        }else if(match(13,2) == 0){ // ;
             break;
         }
     }while(match_results == -1);

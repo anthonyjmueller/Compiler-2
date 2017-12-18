@@ -269,7 +269,7 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
             backPosition = forwadPosition;
             return;
         }
-        if((*Rtoken).tokenChars[len1+len2 - 1] == '0'){
+        if((*Rtoken).tokenChars[len1+len2 - 1] == '0' && len2 > 2){
             //Trailing zeros error
             (*Rtoken).atribute = 9;
             (*Rtoken).token = LEXERROR;

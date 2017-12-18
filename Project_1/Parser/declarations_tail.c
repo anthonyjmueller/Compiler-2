@@ -32,7 +32,7 @@ void declarations_tail(){
         }
         analyzerCaller(returnedToken);
         declarations_tail();
-    }else if(match(7, 0) == 0 || match(7, 6) == 0){
+    }else if(match(7, 2) == 0 || match(7, 1) == 0){
     }
     else{
         strcpy(expected, "'var' or 'begin' or 'procedure'");
@@ -52,9 +52,9 @@ void declarations_tailSync(){
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
             break;
-        }else if(match(7, 0) == 0){ // begin
+        }else if(match(7, 2) == 0){ // begin
             break;
-        }else if(match(7, 6) == 0){ // procedure
+        }else if(match(7, 1) == 0){ // procedure
             break;
         }
     }while(match_results == -1);
