@@ -17,6 +17,7 @@ void compound_statement(){
             compound_statementSync();
             goto end;
         }
+        analyzerCaller(returnedToken);
     }
     else{
         strcpy(expected, "'begin'");
@@ -35,6 +36,7 @@ void compound_statementSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(13,0) == 0){ // .
             break;

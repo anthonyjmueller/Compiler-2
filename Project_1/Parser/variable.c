@@ -30,6 +30,7 @@ void variableSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(14, 0) == 0){ // assignop
             break;

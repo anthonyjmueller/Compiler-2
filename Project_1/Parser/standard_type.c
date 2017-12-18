@@ -10,9 +10,10 @@ char expected[];
 
 void standard_type(){
     if(match(10,0) == 0 || match(10,1) == 0){ //int real
+        analyzerCaller(returnedToken);
     }
     else{
-        strcpy(expected, "'int' or 'real'");
+        strcpy(expected, "'integer' or 'real'");
         standard_typeSync();
         goto end;
     }
@@ -28,6 +29,7 @@ void standard_typeSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(13, 2) == 0){ // ;
             break;

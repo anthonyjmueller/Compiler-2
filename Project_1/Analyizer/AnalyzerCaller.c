@@ -28,10 +28,12 @@ void analyzerCaller(struct TokenReturn *returnedToken){
         //ListingPrinter(returnedToken, currLine);
         analyzer(readingBuff, returnedToken);
         // For testing only
+        /*
         char temp[5];
         sprintf(temp, "%d", (*returnedToken).token);
         printf(temp);
         printf("here \n");
+        */
         //End
         if((*returnedToken).token != 0){
             printToken(returnedToken, lineNum, tokenWrite);

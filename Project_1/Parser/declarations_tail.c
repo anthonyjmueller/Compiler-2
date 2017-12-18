@@ -24,7 +24,6 @@ void declarations_tail(){
         }
         analyzerCaller(returnedToken);
         type();
-        analyzerCaller(returnedToken);
         if(match(13, 2) == -1){ //var_id
             strcpy(expected, "'var_id'");
             declarations_tailSync();
@@ -51,6 +50,7 @@ void declarations_tailSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(7, 2) == 0){ // begin
             break;

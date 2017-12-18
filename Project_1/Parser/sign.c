@@ -10,6 +10,7 @@ char expected[];
 
 void sign(){
     if(match(1,0) == 0|| match(1,1) == 0){ // + -
+        analyzerCaller(returnedToken);
     }
     else{
         strcpy(expected, "'+' or '-'");
@@ -28,6 +29,7 @@ void signSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }
         else if(match(8, 10) == 0){ // var_id

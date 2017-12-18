@@ -33,6 +33,7 @@ void subprogram_declaration_tail2Sync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(13,2) == 0){ // ;
             break;

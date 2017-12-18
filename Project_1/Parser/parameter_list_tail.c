@@ -24,7 +24,6 @@ void parameter_list_tail(){
         }
         analyzerCaller(returnedToken);
         type();
-        analyzerCaller(returnedToken);
         parameter_list_tail();
     }else if(match(4,1) == 0){
     }
@@ -45,6 +44,7 @@ void parameter_list_tailSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(4,1) == 0){ // )
             break;

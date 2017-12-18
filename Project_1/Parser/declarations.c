@@ -24,8 +24,7 @@ void declarations(){
         }
         analyzerCaller(returnedToken);
         type();
-        analyzerCaller(returnedToken);
-        if(match(13, 2) == -1){ //var_id
+        if(match(13, 2) == -1){ // ;
             strcpy(expected, "'var_id'");
             declarationsSync();
             goto end;
@@ -49,6 +48,7 @@ void declarationsSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(7, 2) == 0){ // begin
             break;

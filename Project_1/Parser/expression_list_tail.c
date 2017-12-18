@@ -33,6 +33,7 @@ void expression_list_tailSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(4,1) == 0){ // )
             break;

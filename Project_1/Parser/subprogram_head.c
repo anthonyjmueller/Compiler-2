@@ -23,6 +23,7 @@ void subprogram_head(){
             subprogram_headSync();
             goto end;
         }
+        analyzerCaller(returnedToken);
 
     }
     else{
@@ -42,6 +43,7 @@ void subprogram_headSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(7,1) == 0){ // procedure
             break;

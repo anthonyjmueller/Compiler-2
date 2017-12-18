@@ -11,7 +11,6 @@ char expected[];
 void subprogram_declarations(){
     if(match(7, 1) == 0){ // procedure
         subprogram_declaration();
-        analyzerCaller(returnedToken);
         if(match(13,2) == -1){ // ;
             strcpy(expected, "';'");
             subprogram_declarationsSync();
@@ -37,6 +36,7 @@ void subprogram_declarationsSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(7,2) == 0){ // begin
             break;

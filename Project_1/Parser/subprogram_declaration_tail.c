@@ -15,7 +15,6 @@ void subprogram_declaration_tail(){
     }
     else if(match(7, 1) == 0){ // procedure
         subprogram_declarations();
-        analyzerCaller(returnedToken);
         compound_statement();
     }
     else if(match(7,2) == 0){ // begin
@@ -38,6 +37,7 @@ void subprogram_declaration_tailSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(13,2) == 0){ // ;
             break;

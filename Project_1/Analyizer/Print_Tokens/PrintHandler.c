@@ -24,43 +24,43 @@ void ListingErrorPrinter(struct TokenReturn *currToken){
     if((*currToken).token == 16){ // totaling 12
         fprintf(writePtr, "     LEXERROR:");
         if((*currToken).atribute == 0){
-            fprintf(writePtr, "     Unreconized symbol:    ");
+            fprintf(writePtr, "   Unreconized symbol:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 1){
-            fprintf(writePtr, "     ID Length exceeding 10 Characters:    ");
+            fprintf(writePtr, "   ID Length exceeding 10 Characters:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 2){
-            fprintf(writePtr, "     Integer Length exceeding 10 Characters:    ");
+            fprintf(writePtr, "   Integer Length exceeding 10 Characters:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 3){
-            fprintf(writePtr, "     Integer has leading zeros:    ");
+            fprintf(writePtr, "   Integer has leading zeros:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 4){
-            fprintf(writePtr, "     Real leading 0 in exponent:    ");
+            fprintf(writePtr, "   Real leading 0 in exponent:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 5){
-            fprintf(writePtr, "     integer part of Real too long:    ");
+            fprintf(writePtr, "   integer part of Real too long:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 6){
-            fprintf(writePtr, "     Fraction part of Real too long:    ");
+            fprintf(writePtr, "   Fraction part of Real too long:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 7){
-            fprintf(writePtr, "     Exponent part of Real too long:    ");
+            fprintf(writePtr, "   Exponent part of Real too long:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 8){
-            fprintf(writePtr, "     Leading zeros in real exponent:    ");
+            fprintf(writePtr, "   Leading zeros in real exponent:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
         else if((*currToken).atribute == 9){
-            fprintf(writePtr, "     Trailing zeros in real fraction:    ");
+            fprintf(writePtr, "   Trailing zeros in real fraction:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
     }
@@ -160,30 +160,48 @@ void printToken(struct TokenReturn *currToken, char lineNum[], FILE *tokenFile){
         }
         else if((*currToken).atribute == 1){
             fprintf(tokenFile, "     ID Length exceeding 10 Characters");
+            (*currToken).atribute = 99999;
+            (*currToken).token = 8;
         }
         else if((*currToken).atribute == 2){
             fprintf(tokenFile, "     Integer Length exceeding 10 Characters");
+            (*currToken).atribute = 0;
+            (*currToken).token = 5;
         }
         else if((*currToken).atribute == 3){
             fprintf(tokenFile, "     Integer has leading zeros");
+            (*currToken).atribute = 0;
+            (*currToken).token = 5;
         }
         else if((*currToken).atribute == 4){
             fprintf(tokenFile, "     Real leading 0 in exponent");
+            (*currToken).atribute = 0;
+            (*currToken).token = 6;
         }
         else if((*currToken).atribute == 5){
             fprintf(tokenFile, "     integer part of Real too long");
+            (*currToken).atribute = 0;
+            (*currToken).token = 6;
         }
         else if((*currToken).atribute == 6){
             fprintf(tokenFile, "     Fraction part of Real too long");
+            (*currToken).atribute = 0;
+            (*currToken).token = 6;
         }
         else if((*currToken).atribute == 7){
             fprintf(tokenFile, "     Exponent part of Real too long");
+            (*currToken).atribute = 0;
+            (*currToken).token = 6;
         }
         else if((*currToken).atribute == 8){
             fprintf(tokenFile, "     Leading zeros in real exponent");
+            (*currToken).atribute = 0;
+            (*currToken).token = 6;
         }
         else if((*currToken).atribute == 9){
             fprintf(tokenFile, "     Trailing zeros in real fraction");
+            (*currToken).atribute = 0;
+            (*currToken).token = 6;
         }
     }
 

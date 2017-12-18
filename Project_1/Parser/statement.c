@@ -24,7 +24,6 @@ void statement(){
     }
     else if(match(7 , 2) == 0){ //begin
         compound_statement();
-        analyzerCaller(returnedToken);
     }
     else if( match(7 , 4) == 0 ){ //if
         analyzerCaller(returnedToken);
@@ -66,6 +65,7 @@ void statementSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(7, 3) == 0){ // end
             break;

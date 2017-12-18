@@ -47,7 +47,6 @@ void program(){
     }
     analyzerCaller(returnedToken);
     program_tail();
-    analyzerCaller(returnedToken);
     match(15,0);// EOF
     if(match_results == -1){
         strcpy(expected, "'EOF'");
@@ -67,6 +66,7 @@ void programSync(){
         analyzerCaller(returnedToken);
         match(15,0);
         if(match_results == 0){
+            exit(1);
             break;
         }
     }while(match_results == -1);

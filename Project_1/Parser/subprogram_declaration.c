@@ -11,7 +11,6 @@ char expected[];
 void subprogram_declaration(){
     if(match(7, 1) == 0){ // procedure
         subprogram_head();
-        analyzerCaller(returnedToken);
         subprogram_declaration_tail();
     }
     else{
@@ -31,6 +30,7 @@ void subprogram_declarationSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(13,2) == 0){ // ;
             break;

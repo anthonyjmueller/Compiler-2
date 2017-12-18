@@ -15,7 +15,6 @@ void simple_expression(){
     }
     else if(match(1,0) == 0|| match(1,1) == 0){ // + -
         sign();
-        analyzerCaller(returnedToken);
         term();
         simple_expression_tail();
     }
@@ -36,6 +35,7 @@ void simple_expressionSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(7, 3) == 0){ // end
             break;

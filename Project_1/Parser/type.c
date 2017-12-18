@@ -53,7 +53,7 @@ void type(){
         standard_type();
 
     }else{
-        strcpy(expected, "'int' or 'real' or 'array'");
+        strcpy(expected, "'integer' or 'real' or 'array'");
         typeSync();
         goto end;
     }
@@ -69,6 +69,7 @@ void typeSync(){
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
+            exit(1);
             break;
         }else if(match(13, 2) == 0){ // ;
             break;
