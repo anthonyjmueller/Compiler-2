@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="fib.pas" />
+				<Option parameters="AllErrors.pas" />
 				<Compiler>
 					<Add option="-std=c99" />
 					<Add option="-g" />
@@ -46,9 +46,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Analyizer/Print_Tokens/PrintHandler.h" />
-		<Unit filename="AnalyzerCaller.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="DataType/LinkedList.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -77,6 +74,24 @@
 		<Unit filename="Parser/declarations_tail.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Parser/expression.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/expression_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/expression_list_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/expression_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/factor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/factor_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Parser/identifier_list.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -86,13 +101,43 @@
 		<Unit filename="Parser/match.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Parser/optional_statements.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Parser/parameter_list.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Parser/parameter_list_tail.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Parser/procedure_statement.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/procedure_statement_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/sign.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/simple_expression.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/simple_expression_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Parser/standard_type.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/statement.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/statement_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/statement_list_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/statement_tail.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Parser/subprogram_declaration.c">
@@ -113,7 +158,19 @@
 		<Unit filename="Parser/subprogram_head.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Parser/term.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/term_tail.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Parser/type.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/variable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Parser/variable_tail.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
