@@ -37,12 +37,13 @@ void subprogram_declarations_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
         }else if(match(7,2) == 0){ // begin
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

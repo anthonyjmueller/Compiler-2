@@ -31,7 +31,7 @@ void expressionSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -52,5 +52,6 @@ void expressionSync(){
         }else if(match(4, 1) == 0){ // )
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

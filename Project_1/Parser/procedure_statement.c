@@ -30,18 +30,13 @@ void procedure_statement(){
         int count = 0;
 
         analyzerCaller(returnedToken);
-        procedure_statement_tail(&typeList, &count);
+        procedure_statement_tail(&typeList, &count, checkCall);
 
         if(checkCall != NULL){
             for(int x = 0; x < count; x++){ //check if errors are already reported
                 if(typeList[x] == 0){
                     goto end;
                 }
-            }
-
-            if(count != (*checkCall).numParams){
-                fprintf(writePtr, "     SYMERROR:   Incorrect number of arguments in procedure call ");
-                fprintf(writePtr, "\n");
             }
 
             for(int x = 0; x < count; x++){ //check if errors are already reported
@@ -68,7 +63,7 @@ void procedure_statementSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -79,5 +74,6 @@ void procedure_statementSync(){
         }else if(match(7, 6) == 0){ // else
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

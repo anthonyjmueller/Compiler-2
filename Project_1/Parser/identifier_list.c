@@ -14,7 +14,7 @@ void identifier_list(int *count){
         if(checkAddBlueNode(6) == 1){
             (*currGreen).typeList[*count] = 6;
             *count = *count + 1;
-            offset += potenAdd;
+            offset += 0;
             potenAdd = 0;
         }else{
             fprintf(writePtr, "     SYMERROR:   Variable name ");
@@ -39,12 +39,13 @@ void identifier_listSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
         }else if(match(4,1)  == 0){ // )
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

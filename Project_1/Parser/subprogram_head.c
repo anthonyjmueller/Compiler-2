@@ -55,7 +55,7 @@ void subprogram_headSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -66,5 +66,6 @@ void subprogram_headSync(){
         }else if(match(8,0) == 0){ // var
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

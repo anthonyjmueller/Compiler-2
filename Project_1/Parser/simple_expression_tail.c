@@ -67,7 +67,7 @@ void simple_expression_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -90,5 +90,6 @@ void simple_expression_tailSync(){
         }else if(match(2, 0) == 0 || match(2,1) == 0 || match(2,2) == 0 || match(2,3) == 0 || match(2, 4) == 0){ // relop
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

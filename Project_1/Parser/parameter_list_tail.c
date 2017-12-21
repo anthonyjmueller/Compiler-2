@@ -34,7 +34,7 @@ void parameter_list_tail(int *count){
         int tType = type();
         if (succ == 1){
             (*currEnd).varType = tType;
-            offset += potenAdd;
+            offset += 0;
             potenAdd = 0;
         }
         (*currGreen).typeList[*count] = (*currEnd).varType;
@@ -57,12 +57,13 @@ void parameter_list_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
         }else if(match(4,1) == 0){ // )
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

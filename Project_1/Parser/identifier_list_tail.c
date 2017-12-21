@@ -47,12 +47,13 @@ void identifier_list_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
         }else if(match(4,1) == 0){ // )
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

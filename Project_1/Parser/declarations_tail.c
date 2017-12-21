@@ -61,7 +61,6 @@ void declarations_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -70,5 +69,6 @@ void declarations_tailSync(){
         }else if(match(7, 1) == 0){ // procedure
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

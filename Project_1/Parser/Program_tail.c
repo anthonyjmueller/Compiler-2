@@ -49,11 +49,12 @@ void program_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         match(15,0);
         if(match_results == 0){
             exit(1);
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

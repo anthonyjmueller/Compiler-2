@@ -86,7 +86,7 @@ void statementSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -97,5 +97,6 @@ void statementSync(){
         }else if(match(7, 6) == 0){ // else
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

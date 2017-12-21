@@ -64,7 +64,7 @@ void factorSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -91,5 +91,6 @@ void factorSync(){
         }else if(match(3, 0) == 0 || match(3,1) == 0 || match(3,2) == 0 || match(3,3) == 0 || match(3,4) == 0 ){ // mulop
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

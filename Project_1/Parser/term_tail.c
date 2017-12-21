@@ -83,7 +83,7 @@ void term_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -108,5 +108,6 @@ void term_tailSync(){
         }else if(match(1, 0) == 0 || match(1,1) == 0 || match(1,2) == 0){ // addop
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

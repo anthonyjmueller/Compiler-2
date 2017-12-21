@@ -9,10 +9,18 @@
 
 char expected[];
 
-void procedure_statement_tail(int *typeList[50], int *count){
+void procedure_statement_tail(int *typeList[50], int *count, struct node *checkCall){
     if(match(4,0) == 0){ // (
         analyzerCaller(returnedToken);
         expression_list(typeList, count);
+
+        if(checkCall != NULL){
+            if(*count != (*checkCall).numParams){
+                fprintf(writePtr, "     SYMERROR:   Incorrect number of arguments in procedure call ");
+                fprintf(writePtr, "\n");
+            }
+        }
+
         if(match(4, 1) == -1){ // )
             strcpy(expected, "')'");
             procedure_statement_tailSync();
@@ -21,6 +29,12 @@ void procedure_statement_tail(int *typeList[50], int *count){
         analyzerCaller(returnedToken);
     }
     else if(match(7, 6) == 0 || match(13, 2) == 0 || match(7, 3) == 0){ // else ; end
+        if(checkCall != NULL){
+            if(*count != (*checkCall).numParams && checkCall != NULL){
+                fprintf(writePtr, "     SYMERROR:   Incorrect number of arguments in procedure call ");
+                fprintf(writePtr, "\n");
+            }
+        }
     }
     else{
         strcpy(expected, "'(' or 'else' or ';' or 'end'");
@@ -37,7 +51,7 @@ void procedure_statement_tailSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -48,5 +62,6 @@ void procedure_statement_tailSync(){
         }else if(match(7, 6) == 0){ // else
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }

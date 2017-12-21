@@ -28,7 +28,7 @@ void signSync(){
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
     do{
-        analyzerCaller(returnedToken);
+
         if(match(15,0) == 0){
             exit(1);
             break;
@@ -45,5 +45,6 @@ void signSync(){
         else if(match(12, 0) == 0){ //(not
             break;
         }
+        analyzerCaller(returnedToken);
     }while(match_results == -1);
 }
