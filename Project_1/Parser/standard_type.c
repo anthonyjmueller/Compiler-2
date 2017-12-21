@@ -5,16 +5,26 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void standard_type(){
+int standard_type(){
     if(match(10,0) == 0 || match(10,1) == 0){ //int real
-        analyzerCaller(returnedToken);
+        if(match(10,0) == 0){ ///////int
+            analyzerCaller(returnedToken);
+            potenAdd = 4;
+            return 1; ///////int
+        }else if(match(10,1) == 0){ //real
+            analyzerCaller(returnedToken);
+            potenAdd = 8;
+            return 2;   //aing
+        }
     }
     else{
         strcpy(expected, "'integer' or 'real'");
         standard_typeSync();
+        return 0;
         goto end;
     }
 end:;

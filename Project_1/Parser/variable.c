@@ -5,13 +5,21 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void variable(){
+int variable(){
     if(match(8, 10) == 0){ // else
+            int type = getType();
+            if(type == 0){
+                fprintf(writePtr, "     SYMERROR:   Variable name ");
+                fprintf(writePtr, (*returnedToken).tokenChars);
+                fprintf(writePtr, " not in scope");
+                fprintf(writePtr, "\n");
+            }
             analyzerCaller(returnedToken);
-            variable_tail();
+            return variable_tail(type);
     }
     else{
         strcpy(expected, "'id_var'");
@@ -19,6 +27,7 @@ void variable(){
         goto end;
     }
 end:;
+return 0;
 }
 
 void variableSync(){

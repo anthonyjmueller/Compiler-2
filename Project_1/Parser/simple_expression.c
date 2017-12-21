@@ -5,18 +5,24 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void simple_expression(){
+int simple_expression(){
     if(match(8, 10) == 0 || match(5,0) == 0 || match(6,0) == 0 || match(4,0) == 0 || match(12, 0) == 0){ // var_id num ( not
-        term();
-        simple_expression_tail();
+        int tType = term();
+        return simple_expression_tail(tType);
     }
     else if(match(1,0) == 0|| match(1,1) == 0){ // + -
         sign();
-        term();
-        simple_expression_tail();
+        int tType = term();
+        if(tType != 5 || tType != 6 || tType != 0){
+            fprintf(writePtr, "     SYMERROR:   Incompatible types for sign ");
+            fprintf(writePtr, "\n");
+            tType = 0;
+        }
+        return simple_expression_tail(tType);
     }
     else{
         strcpy(expected, "'var_id' or 'num' or '(' or 'not' or '+' or '-'");
@@ -24,6 +30,7 @@ void simple_expression(){
         goto end;
     }
 end:;
+return 0;
 }
 
 void simple_expressionSync(){

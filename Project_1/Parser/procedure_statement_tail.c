@@ -5,13 +5,14 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void procedure_statement_tail(){
+void procedure_statement_tail(int *typeList[50], int *count){
     if(match(4,0) == 0){ // (
         analyzerCaller(returnedToken);
-        expression_list();
+        expression_list(typeList, count);
         if(match(4, 1) == -1){ // )
             strcpy(expected, "')'");
             procedure_statement_tailSync();

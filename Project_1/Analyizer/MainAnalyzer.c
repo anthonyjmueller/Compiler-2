@@ -75,7 +75,7 @@ void whiteSpace(char readingBuffer[77], struct TokenReturn *Rtoken){
 
 void addop(char readingBuffer[77], struct TokenReturn *Rtoken){
     if(readingBuffer[forwadPosition] == 43){ //  +
-        (*Rtoken).atribute = 0;
+        (*Rtoken).atribute = 2;
         (*Rtoken).token = ADDOP;
         forwadPosition += 1;
         strcpy((*Rtoken).tokenChars, "+");
@@ -129,13 +129,13 @@ void relop(char readingBuffer[77], struct TokenReturn *Rtoken){
 
 void mulop (char readingBuffer[77], struct TokenReturn *Rtoken){
     if(readingBuffer[forwadPosition] == 42){ //  *
-        (*Rtoken).atribute = 0;
+        (*Rtoken).atribute = 3;
         (*Rtoken).token = MULOP;
         strcpy((*Rtoken).tokenChars,"*");
         forwadPosition += 1;
     }//addition
     else if(readingBuffer[forwadPosition] == 47){ //  /
-        (*Rtoken).atribute = 1;
+        (*Rtoken).atribute = 4;
         (*Rtoken).token = MULOP;
         strcpy((*Rtoken).tokenChars,"/");
         forwadPosition += 1;
@@ -180,7 +180,7 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
     int len2 = 0;
     int len3 = 0;
 
-    if(readingBuffer[forwadPosition] == 46){ //IF Real and not int
+    if(readingBuffer[forwadPosition] == 46 & len1 > 0){ //IF Real and not int
         forwadPosition += 1;
         if(readingBuffer[forwadPosition] == 46){
             forwadPosition -= 1;
@@ -192,10 +192,27 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
         len2 = forwadPosition - len1 - backPosition;
         if(readingBuffer[forwadPosition] == 69){
             forwadPosition += 1;
-            while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
+            if(readingBuffer[forwadPosition] == 43 || readingBuffer[forwadPosition] == 45){//find optional sign
                 forwadPosition += 1;
+                while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
+                    forwadPosition += 1;
+                }
+                len3 = forwadPosition - len1 - len2 - backPosition -1;
+                if(len3 == 1){
+                    len3 = 0;
+                    forwadPosition -= 2;
+                }
             }
-            len3 = forwadPosition - len1 - len2 - backPosition;
+            else{
+                while(readingBuffer[forwadPosition] >= 48 && readingBuffer[forwadPosition] <= 57){
+                    forwadPosition += 1;
+                }
+                len3 = forwadPosition - len1 - len2 - backPosition;
+                if(len3 == 1){
+                    len3 = 0;
+                    forwadPosition -= 1;
+                }
+            }
         }
     }
     exitReal:;
@@ -277,7 +294,7 @@ void numbers (char readingBuffer[77], struct TokenReturn *Rtoken) {
             return;
         }
         if(len3 > 2){
-            if((*Rtoken).tokenChars[len1+len2 + len3 - 2] == '0'){
+            if((*Rtoken).tokenChars[len1+len2 + len3 - 2] == '0' && len3 == 3){
                 //Leading Zero error
                 (*Rtoken).atribute = 4;
                 (*Rtoken).token = LEXERROR;

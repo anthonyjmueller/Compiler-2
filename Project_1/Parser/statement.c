@@ -5,19 +5,30 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
 void statement(){
     if(match(8,10) == 0){ //var_id
-        variable();
+        int vType = variable();
         if(match(14, 0) == -1){ // assignop
             strcpy(expected, "':='");
             statementSync();
             goto end;
         }
         analyzerCaller(returnedToken);
-        expression();
+        int eType = expression();
+
+        if(vType == 1 && eType == 1){
+
+        }else if(vType == 2 && eType == 2){
+        }
+        else if(vType == 0 || eType == 0){
+        }else{
+            fprintf(writePtr, "     SYMERROR:   Incompatible types for assignment ");
+            fprintf(writePtr, "\n");
+        }
     }
     else if( match(7 , 9) == 0){ //call
         procedure_statement();
@@ -27,7 +38,13 @@ void statement(){
     }
     else if( match(7 , 4) == 0 ){ //if
         analyzerCaller(returnedToken);
-        expression();
+        int eType = expression();
+        if(eType != 0 && eType != 5){
+            if(eType != 1 || eType != 2){
+            fprintf(writePtr, "     SYMERROR:   Non-boolean statement ");
+            fprintf(writePtr, "\n");
+            }
+        }
         if(match(7,5) == -1){ // then
             strcpy(expected, "'then'");
             statementSync();
@@ -39,7 +56,13 @@ void statement(){
     }
     else if(match(7 , 7) == 0){ // while
         analyzerCaller(returnedToken);
-        expression();
+        int eType = expression();
+        if(eType != 0 && eType != 5){
+            if(eType != 1 || eType != 2){
+            fprintf(writePtr, "     SYMERROR:   Non-boolean statement ");
+            fprintf(writePtr, "\n");
+            }
+        }
         if(match(7,8) == -1){ // do
             strcpy(expected, "'do'");
             statementSync();

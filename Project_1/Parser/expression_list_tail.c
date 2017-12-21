@@ -5,14 +5,17 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void expression_list_tail(){
+void expression_list_tail(int *typeList[50], int *count){
     if(match(13, 1) == 0){ // ,
         analyzerCaller(returnedToken);
-        expression();
-        expression_list_tail();
+        int eType = expression();
+        typeList[*count] = eType;
+        *count = (*count) + 1;
+        expression_list_tail(typeList, count);
     }
     else if(match(4,1) == 0){ // )
     }

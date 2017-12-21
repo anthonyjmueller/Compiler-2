@@ -5,6 +5,7 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
@@ -16,9 +17,11 @@ void subprogram_declaration_tail(){
     else if(match(7, 1) == 0){ // procedure
         subprogram_declarations();
         compound_statement();
+        popScope();
     }
     else if(match(7,2) == 0){ // begin
         compound_statement();
+        popScope();
     }
     else{
         strcpy(expected, "'procedure' or 'var' or 'begin'");

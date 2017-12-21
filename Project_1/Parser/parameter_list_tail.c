@@ -5,16 +5,24 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void parameter_list_tail(){
+void parameter_list_tail(int *count){
     if(match(13 , 2) == 0){ // ;
         analyzerCaller(returnedToken);
         if(match(8,10) == -1){ // var_id
             strcpy(expected, "'var_id'");
             parameter_list_tailSync();
             goto end;
+        }
+        int succ = checkAddBlueNode(0); /////////////////blue node
+        if(succ == -1){
+            fprintf(writePtr, "     SYMERROR:   Variable name ");
+            fprintf(writePtr, (*returnedToken).tokenChars);
+            fprintf(writePtr, " already declared");
+            fprintf(writePtr, "\n");
         }
         analyzerCaller(returnedToken);
         if(match(10, 2) == -1){ // :
@@ -23,8 +31,15 @@ void parameter_list_tail(){
             goto end;
         }
         analyzerCaller(returnedToken);
-        type();
-        parameter_list_tail();
+        int tType = type();
+        if (succ == 1){
+            (*currEnd).varType = tType;
+            offset += potenAdd;
+            potenAdd = 0;
+        }
+        (*currGreen).typeList[*count] = (*currEnd).varType;
+        *count = *count + 1;
+        parameter_list_tail(count);
     }else if(match(4,1) == 0){
     }
     else{

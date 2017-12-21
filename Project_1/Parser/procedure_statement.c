@@ -5,6 +5,7 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
@@ -16,8 +17,39 @@ void procedure_statement(){
             procedure_statementSync();
             goto end;
         }
+        struct node* checkCall = malloc(sizeof(struct node));
+        checkCall = getProc();
+        if(checkCall == NULL){
+            fprintf(writePtr, "     SYMERROR:   called undefined procedure ");
+            fprintf(writePtr, "\n");
+        }
+
+        int typeList[50];
+        int count = 0;
+
         analyzerCaller(returnedToken);
-        procedure_statement_tail();
+        procedure_statement_tail(&typeList, &count);
+
+        if(checkCall != NULL){
+            for(int x = 0; x < count; x++){ //check if errors are already reported
+                if(typeList[x] == 0){
+                    goto end;
+                }
+            }
+
+            if(count != (*checkCall).numParams){
+                fprintf(writePtr, "     SYMERROR:   Incorrect number of arguments in procedure call ");
+                fprintf(writePtr, "\n");
+            }
+
+            for(int x = 0; x < count; x++){ //check if errors are already reported
+                if(typeList[x] != (*checkCall).typeList[x]){
+                    fprintf(writePtr, "     SYMERROR:   Incorrect argument types in procedure call ");
+                    fprintf(writePtr, "\n");
+                    goto end;
+                }
+            }
+        }
     }
     else{
         strcpy(expected, "'var_id'");

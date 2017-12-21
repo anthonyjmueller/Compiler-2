@@ -5,6 +5,7 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
@@ -16,8 +17,19 @@ void subprogram_head(){
             subprogram_headSync();
             goto end;
         }
+        int succ = checkAddGreenNode();
+        if(succ == -1){
+            fprintf(writePtr, "     SYMERROR:   Parameter name ");
+            fprintf(writePtr, (*returnedToken).tokenChars);
+            fprintf(writePtr, " already declared");
+            fprintf(writePtr, "\n");
+        }
         analyzerCaller(returnedToken);
-        arguments();
+        int paramCount = 0; /////////////params count
+        arguments(&paramCount);
+        if(succ == 1){
+            (*currGreen).numParams = paramCount;
+        }
         if(match(13,2) == -1){ // ;
             strcpy(expected, "';'");
             subprogram_headSync();

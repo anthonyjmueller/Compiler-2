@@ -63,6 +63,8 @@ void ListingErrorPrinter(struct TokenReturn *currToken){
             fprintf(writePtr, "   Trailing zeros in real fraction:    ");
             fprintf(writePtr, (*currToken).tokenChars);
         }
+    }else if((*currToken).token == 17){ // totaling 12
+        fprintf(writePtr, "    SYNCERROR:");
     }
 
     fprintf(writePtr, "\n");
@@ -219,4 +221,4 @@ void printToken(struct TokenReturn *currToken, char lineNum[], FILE *tokenFile){
     }
 
     fprintf(tokenFile, "\n");
-}
+};

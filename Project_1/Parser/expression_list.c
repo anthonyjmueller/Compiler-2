@@ -5,13 +5,16 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void expression_list(){
+void expression_list(int *typeList[50], int *count){
     if(match(8, 10) == 0 || match(5,0) == 0 || match(6,0) == 0 || match(4,0) == 0 || match(12, 0) == 0 || match(1,0) == 0|| match(1,1) == 0){ // var_id num ( not + -
-        expression();
-        expression_list_tail();
+        int eType = expression();
+        typeList[*count] = eType;
+        *count = (*count) + 1;
+        expression_list_tail(typeList, count);
     }
     else{
         strcpy(expected, "'var_id' or 'num' or '(' or 'not' or '+' or '-'");

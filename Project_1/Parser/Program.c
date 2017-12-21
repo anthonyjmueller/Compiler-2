@@ -5,6 +5,8 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../DataType/nodes.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
@@ -23,6 +25,9 @@ void program(){
         programSync();
         goto end;
     }
+    if(checkAddGreenNode() == 1){
+        level += 1;////increases level int
+    }
     analyzerCaller(returnedToken);
     match(4,0); //(
     if(match_results == -1){
@@ -31,7 +36,9 @@ void program(){
         goto end;
     }
     analyzerCaller(returnedToken);
-    identifier_list();
+    int paramCount = 0; /////////////////gets parameter count
+    identifier_list(&paramCount);
+    (*currGreen).numParams = paramCount;
     match(4,1); //)
     if(match_results == -1){
         strcpy(expected, "')'");

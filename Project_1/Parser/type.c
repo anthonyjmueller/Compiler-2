@@ -5,12 +5,13 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void type(){
+int type(){
     if(match(10,0) == 0 || match(10,1) == 0){ //int real
-        standard_type();
+        return standard_type();
     }
     else if(match(9,0) == 0){ //array
         analyzerCaller(returnedToken);
@@ -25,6 +26,7 @@ void type(){
             typeSync();
             goto end;
         }
+        long num1 = strtol((*returnedToken).tokenChars, NULL, 10);
         analyzerCaller(returnedToken);
         if(match(9,2) == -1){ // ...
             strcpy(expected, "'..'");
@@ -37,6 +39,7 @@ void type(){
             typeSync();
             goto end;
         }
+        long num2 = strtol((*returnedToken).tokenChars, NULL, 10);
         analyzerCaller(returnedToken);
         if(match(4,3) == -1){ // ]
             strcpy(expected, "']'");
@@ -50,11 +53,21 @@ void type(){
             goto end;
         }
         analyzerCaller(returnedToken);
-        standard_type();
+        int retstdtype = standard_type();
+        if(retstdtype == 0){
+            return 0;
+        }else if(retstdtype == 1){ //int
+            potenAdd = (num2 - num1 + 1) * 4;
+            return 3;   //aing
+        }else if(retstdtype == 2){ //real
+            potenAdd = (num2 - num1 + 1) * 8;
+            return 4;   //areal
+        }
 
     }else{
         strcpy(expected, "'integer' or 'real' or 'array'");
         typeSync();
+        return 0;
         goto end;
     }
 end:;

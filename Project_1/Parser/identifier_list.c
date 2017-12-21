@@ -5,13 +5,25 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void identifier_list(){
+void identifier_list(int *count){
     if(match(8,10) == 0){
+        if(checkAddBlueNode(6) == 1){
+            (*currGreen).typeList[*count] = 6;
+            *count = *count + 1;
+            offset += potenAdd;
+            potenAdd = 0;
+        }else{
+            fprintf(writePtr, "     SYMERROR:   Variable name ");
+            fprintf(writePtr, (*returnedToken).tokenChars);
+            fprintf(writePtr, " already declared");
+            fprintf(writePtr, "\n");
+        }
         analyzerCaller(returnedToken);
-        identifier_list_tail();
+        identifier_list_tail(count);
     }else{
         strcpy(expected, "'var_id'");
         identifier_listSync();

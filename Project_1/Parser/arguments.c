@@ -5,13 +5,14 @@
 #include "Productions.h"
 #include "../Analyizer/AnalyzerCaller.h"
 #include "../DataType/LinkedList.h"
+#include "../Analyizer/Print_Tokens/PrintHandler.h"
 
 char expected[];
 
-void arguments(){
+void arguments(int *count){
     if(match(4,0) == 0){ // (
         analyzerCaller(returnedToken);
-        parameter_list();
+        parameter_list(count);
         if(match(4, 1) == -1){ // )
             strcpy(expected, "')'");
             argumentsSync();
@@ -34,6 +35,9 @@ void argumentsSync(){
     fprintf(writePtr, " expected ");
     fprintf(writePtr, expected);
     fprintf(writePtr, "\n");
+   // (*returnedToken).token = 17;
+    //ListingErrorPrinter((*returnedToken));
+
     do{
         analyzerCaller(returnedToken);
         if(match(15,0) == 0){
