@@ -23,6 +23,8 @@ void subprogram_head(){
             fprintf(writePtr, (*returnedToken).tokenChars);
             fprintf(writePtr, " already declared");
             fprintf(writePtr, "\n");
+        }else{
+            offset = 0;
         }
         analyzerCaller(returnedToken);
         int paramCount = 0; /////////////params count

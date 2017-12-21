@@ -22,6 +22,8 @@ void procedure_statement(){
         if(checkCall == NULL){
             fprintf(writePtr, "     SYMERROR:   called undefined procedure ");
             fprintf(writePtr, "\n");
+        }else{
+            offset = 0;
         }
 
         int typeList[50];
