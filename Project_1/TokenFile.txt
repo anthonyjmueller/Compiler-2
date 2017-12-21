@@ -3,22 +3,22 @@ Line             Lexeme        Token Type       Token Attribute
     1                fib              VAR                    10
     1                  (         GROUPING                     0
     1              input              VAR                    11
-    1                  ,             PUNC                     1
+    1                  ;             PUNC                     2
     1             output              VAR                    12
     1                  )         GROUPING                     1
     1                  ;             PUNC                     2
     2                var              VAR                     0
     2                  a              VAR                    13
     2                  :             TYPE                     2
-    2            integer             TYPE                     0
+    2                int              VAR                    14
     2                  ;             PUNC                     2
     2                var              VAR                     0
-    2                  p              VAR                    14
+    2                  p              VAR                    15
     2                  :             TYPE                     2
     2            integer             TYPE                     0
     2                  ;             PUNC                     2
     3                var              VAR                     0
-    3          numsArray              VAR                    15
+    3          numsArray              VAR                    16
     3                  :             TYPE                     2
     3              array            ARRAY                     0
     3                  [         GROUPING                     2
@@ -26,272 +26,233 @@ Line             Lexeme        Token Type       Token Attribute
     3                 ..            ARRAY                     2
     3                 12              INT                     0
     3                  ]         GROUPING                     3
-    3                 of            ARRAY                     1
+    3                 on              VAR                    17
     3            integer             TYPE                     0
     3                  ;             PUNC                     2
     4                var              VAR                     0
-    4                  q              VAR                    16
+    4                  q              VAR                    18
     4                  :             TYPE                     2
     4               real             TYPE                     1
     4                  ;             PUNC                     2
     6          procedure          CONTROL                     1
-    6               fib1              VAR                    17
+    6               fib1              VAR                    19
     6                  (         GROUPING                     0
-    6           aLongInt              VAR                    18
+    6     aReallyLongInt        LEXERROR:     ID Length exceeding 10 Characters                 99999
     6                  :             TYPE                     2
     6            integer             TYPE                     0
     6                  ;             PUNC                     2
-    6                  b              VAR                    19
+    6                  b              VAR                    20
     6                  :             TYPE                     2
     6               real             TYPE                     1
+    6                  ,             PUNC                     1
+    6                  c              VAR                    21
+    6                  :             TYPE                     2
+    6               real             TYPE                     1
+    6                  )         GROUPING                     1
     6                  ;             PUNC                     2
-    7                  c              VAR                    20
-    7                  :             TYPE                     2
-    7            integer             TYPE                     0
-    7                  ;             PUNC                     2
-    7                  d              VAR                    21
-    7                  :             TYPE                     2
-    7            integer             TYPE                     0
-    7                  )         GROUPING                     1
-    7                  ;             PUNC                     2
-    8              begin          CONTROL                     2
-    9                 if          CONTROL                     4
-    9                  a              VAR                    13
-    9                 <=            RELOP                     2
-    9                  1              INT                     0
-    9               then          CONTROL                     5
+    7              begin          CONTROL                     2
+    8                 if          CONTROL                     4
+    8                  a              VAR                    13
+    8                 <=            RELOP                     2
+    8               1.20        LEXERROR:     Trailing zeros in real fraction                     0
+    8               then          CONTROL                     5
+    8                fib              VAR                    10
+    8                 :=         ASSIGNOP                     0
+    8                  c              VAR                    21
+    9               else          CONTROL                     6
+    9               call          CONTROL                     9
     9                fib              VAR                    10
-    9                 :=         ASSIGNOP                     0
-    9                  c              VAR                    20
-   10               else          CONTROL                     6
-   10               call          CONTROL                     9
-   10                fib              VAR                    10
-   10                  (         GROUPING                     0
-   10                  a              VAR                    13
-   10                  -            ADDOP                     1
-   10                  1              INT                     0
-   10                  ,             PUNC                     1
-   10                  c              VAR                    20
-   10                  ,             PUNC                     1
-   10                  b              VAR                    19
-   10                  +            ADDOP                     2
-   10                  c              VAR                    20
-   10                  )         GROUPING                     1
-   11                end          CONTROL                     3
-   11                  ;             PUNC                     2
-   13          procedure          CONTROL                     1
-   13               fib2              VAR                    22
-   13                  (         GROUPING                     0
-   13                  a              VAR                    13
+    9                  (         GROUPING                     0
+    9                  a              VAR                    13
+    9                  -            ADDOP                     1
+    9                 01        LEXERROR:     Integer has leading zeros                     0
+    9                  ,             PUNC                     1
+    9                  c              VAR                    21
+    9                  ,             PUNC                     1
+    9                  b              VAR                    20
+    9                  +            ADDOP                     2
+    9                  c              VAR                    21
+    9                  )         GROUPING                     1
+   10                end          CONTROL                     3
+   10                  ;             PUNC                     2
+   12          procedure          CONTROL                     1
+   12               fib2              VAR                    22
+   12                  (         GROUPING                     0
+   12                  a              VAR                    13
+   12                  :             TYPE                     2
+   12            integer             TYPE                     0
+   12                  )         GROUPING                     1
+   12                  ;             PUNC                     2
+   13                var              VAR                     0
+   13                  b              VAR                    20
    13                  :             TYPE                     2
-   13            integer             TYPE                     0
-   13                  )         GROUPING                     1
+   13               real             TYPE                     1
+   13                  ;             PUNC                     2
+   13                var              VAR                     0
+   13                  c              VAR                    21
+   13                  :             TYPE                     2
+   13               real             TYPE                     1
+   13                  ;             PUNC                     2
+   13                var              VAR                     0
+   13                sum              VAR                    23
+   13                  :             TYPE                     2
    13                  ;             PUNC                     2
    14                var              VAR                     0
-   14                  b              VAR                    19
+   14                  b              VAR                    20
    14                  :             TYPE                     2
    14               real             TYPE                     1
    14                  ;             PUNC                     2
-   14                var              VAR                     0
-   14                  c              VAR                    20
-   14                  :             TYPE                     2
-   14               real             TYPE                     1
-   14                  ;             PUNC                     2
-   14                var              VAR                     0
-   14                sum              VAR                    23
-   14                  :             TYPE                     2
-   14            integer             TYPE                     0
-   14                  ;             PUNC                     2
-   15                var              VAR                     0
-   15                  b              VAR                    19
+   15          procedure          CONTROL                     1
+   15              rawr3              VAR                    24
+   15                  (         GROUPING                     0
+   15                  b              VAR                    20
    15                  :             TYPE                     2
    15               real             TYPE                     1
+   15                  )         GROUPING                     1
    15                  ;             PUNC                     2
-   16          procedure          CONTROL                     1
-   16              rawr3              VAR                    24
-   16                  (         GROUPING                     0
-   16                  b              VAR                    19
+   16                var              VAR                     0
+   16                  q              VAR                    18
    16                  :             TYPE                     2
    16               real             TYPE                     1
-   16                  )         GROUPING                     1
    16                  ;             PUNC                     2
-   17                var              VAR                     0
-   17                  q              VAR                    16
-   17                  :             TYPE                     2
-   17               real             TYPE                     1
-   17                  ;             PUNC                     2
-   18              begin          CONTROL                     2
-   19                  q              VAR                    16
-   19                 :=         ASSIGNOP                     0
-   19                  b              VAR                    19
-   19                  +            ADDOP                     2
-   19                sum              VAR                    23
-   19                  ;             PUNC                     2
-   20               call          CONTROL                     9
-   20               fib2              VAR                    22
-   20                  (         GROUPING                     0
-   20                  q              VAR                    16
-   20                  )         GROUPING                     1
-   21                end          CONTROL                     3
-   21                  ;             PUNC                     2
-   23              begin          CONTROL                     2
-   24                  q              VAR                    16
-   24                 :=         ASSIGNOP                     0
-   24                not              NOT                     0
-   24                  3              INT                     0
+   17              begin          CONTROL                     2
+   18                  q              VAR                    18
+   18                 :=         ASSIGNOP                     0
+   18                  b              VAR                    20
+   18                  +            ADDOP                     2
+   18                2.0             REAL                     0
+   18                  ;             PUNC                     2
+   19               call          CONTROL                     9
+   19               fib2              VAR                    22
+   19                  (         GROUPING                     0
+   19                  q              VAR                    18
+   19                  )         GROUPING                     1
+   19                  .             PUNC                     0
+   20                end          CONTROL                     3
+   20                  ;             PUNC                     2
+   22              begin          CONTROL                     2
+   23                  a              VAR                    13
+   23                 :=         ASSIGNOP                     0
+   23                  a              VAR                    13
+   23                  -            ADDOP                     1
+   23                  1              INT                     0
+   23                  ;             PUNC                     2
+   24               fib1              VAR                    19
+   24                  (         GROUPING                     0
+   24               3.00        LEXERROR:     Trailing zeros in real fraction                     0
+   24                  )         GROUPING                     1
    24                  ;             PUNC                     2
-   25                  q              VAR                    16
+   25                sum              VAR                    23
    25                 :=         ASSIGNOP                     0
-   25                  (         GROUPING                     0
-   25                  3              INT                     0
-   25                  <            RELOP                     1
-   25                  4              INT                     0
-   25                  )         GROUPING                     1
-   25                and            MULOP                     2
-   25                  (         GROUPING                     0
-   25                3.6             REAL                     0
-   25                  <            RELOP                     1
-   25                  p              VAR                    14
-   25                  )         GROUPING                     1
+   25                  1              INT                     0
    25                  ;             PUNC                     2
-   26                  a              VAR                    13
+   26                  c              VAR                    21
    26                 :=         ASSIGNOP                     0
-   26                  a              VAR                    13
-   26                  -            ADDOP                     1
-   26                  1              INT                     0
+   26                  b              VAR                    20
    26                  ;             PUNC                     2
-   27               call          CONTROL                     9
-   27               fib1              VAR                    17
-   27                  (         GROUPING                     0
-   27                3.2             REAL                     0
-   27                  ,             PUNC                     1
-   27                  1              INT                     0
+   27              while          CONTROL                     7
+   27                  a              VAR                    13
+   27                  <            RELOP                     3
+   27                  0              INT                     0
    27                  )         GROUPING                     1
-   27                  ;             PUNC                     2
-   28                sum              VAR                    23
-   28                 :=         ASSIGNOP                     0
-   28                  1              INT                     0
+   27                 do          CONTROL                     8
+   28               call          CONTROL                     9
+   28                  3              INT                     0
    28                  ;             PUNC                     2
-   29                  c              VAR                    20
-   29                 :=         ASSIGNOP                     0
-   29                  b              VAR                    19
-   29                  ;             PUNC                     2
-   30              while          CONTROL                     7
-   30                not              NOT                     0
-   30                  (         GROUPING                     0
+   29              begin          CONTROL                     2
    30                  a              VAR                    13
-   30                  <            RELOP                     3
-   30                  0              INT                     0
-   30                  )         GROUPING                     1
-   30                 do          CONTROL                     8
-   31               call          CONTROL                     9
-   31              rawr3              VAR                    24
-   31                  (         GROUPING                     0
-   31                  b              VAR                    19
-   31                  *            MULOP                     3
-   31                  4              INT                     0
-   31                  )         GROUPING                     1
+   30                 :=         ASSIGNOP                     0
+   30                  a              VAR                    13
+   30                  -            ADDOP                     1
+   30                  1              INT                     0
+   30                  ;             PUNC                     2
+   31                  b              VAR                    20
+   31                 :=         ASSIGNOP                     0
+   31                sum              VAR                    23
    31                  ;             PUNC                     2
-   32              begin          CONTROL                     2
-   33                  a              VAR                    13
+   32                sum              VAR                    23
+   32                 :=         ASSIGNOP                     0
+   32                  c              VAR                    21
+   32                  +            ADDOP                     2
+   32                sum              VAR                    23
+   32                  ;             PUNC                     2
+   33                  c              VAR                    21
    33                 :=         ASSIGNOP                     0
-   33                  a              VAR                    13
-   33                  -            ADDOP                     1
-   33                  1              INT                     0
-   33                  ;             PUNC                     2
-   34                  b              VAR                    19
-   34                 :=         ASSIGNOP                     0
-   34                sum              VAR                    23
+   33                  b              VAR                    20
+   34                end          CONTROL                     3
    34                  ;             PUNC                     2
-   35                sum              VAR                    23
+   35               fib2              VAR                    22
    35                 :=         ASSIGNOP                     0
-   35                  c              VAR                    20
-   35                  +            ADDOP                     2
    35                sum              VAR                    23
-   35                  ;             PUNC                     2
-   36                  c              VAR                    20
-   36                 :=         ASSIGNOP                     0
-   36                  b              VAR                    19
-   37                end          CONTROL                     3
-   37                  ;             PUNC                     2
-   38               fib2              VAR                    22
-   38                 :=         ASSIGNOP                     0
-   38                sum              VAR                    23
-   39                end          CONTROL                     3
-   39                  ;             PUNC                     2
-   41          procedure          CONTROL                     1
-   41               init              VAR                    25
-   41                  ;             PUNC                     2
-   42              begin          CONTROL                     2
-   43                  n              VAR                    26
+   36                end          CONTROL                     3
+   36                  ;             PUNC                     2
+   38          procedure          CONTROL                     1
+   38               init              VAR                    25
+   38                  ;             PUNC                     2
+   39              begin          CONTROL                     2
+   40                  n              VAR                    26
+   40                 :=         ASSIGNOP                     0
+   40                 12              INT                     0
+   40                  ;             PUNC                     2
+   41                 if          CONTROL                     4
+   41                  (         GROUPING                     0
+   41                  1              INT                     0
+   41                and            MULOP                     2
+   41                  2              INT                     0
+   41                  )         GROUPING                     1
+   41                 or            ADDOP                     0
+   41                  3              INT                     0
+   41               then          CONTROL                     5
+   41                  p              VAR                    15
+   41                 :=         ASSIGNOP                     0
+   41                 12              INT                     0
+   42               else          CONTROL                     6
+   42                  p              VAR                    15
+   42                 :=         ASSIGNOP                     0
+   42                 14              INT                     0
+   42                  ;             PUNC                     2
+   43          numsArray              VAR                    16
+   43                  [         GROUPING                     2
+   43                  3              INT                     0
+   43                  ]         GROUPING                     3
    43                 :=         ASSIGNOP                     0
-   43                 12              INT                     0
+   43             15.560        LEXERROR:     Trailing zeros in real fraction                     0
    43                  ;             PUNC                     2
-   44                 if          CONTROL                     4
-   44                not              NOT                     0
-   44                  (         GROUPING                     0
-   44                  1              INT                     0
-   44                  <            RELOP                     1
-   44                 74              INT                     0
-   44                  )         GROUPING                     1
-   44                 or            ADDOP                     0
-   44                  3              INT                     0
-   44               then          CONTROL                     5
-   44                  p              VAR                    14
+   44                  q              VAR                    18
    44                 :=         ASSIGNOP                     0
-   44                  (         GROUPING                     0
-   44                  1              INT                     0
-   44                  <            RELOP                     3
-   44                  2              INT                     0
-   44                  )         GROUPING                     1
-   44                and            MULOP                     2
-   44                  (         GROUPING                     0
-   44                  3              INT                     0
-   44                  <            RELOP                     1
-   44                  n              VAR                    26
-   44                  )         GROUPING                     1
-   45               else          CONTROL                     6
-   45                  p              VAR                    14
+   44                  q              VAR                    18
+   44                  [         GROUPING                     2
+   44                  4              INT                     0
+   44                  ]         GROUPING                     3
+   44                  ;             PUNC                     2
+   45                  q              VAR                    18
+   45                  [         GROUPING                     2
+   45                  4              INT                     0
+   45                  ]         GROUPING                     3
    45                 :=         ASSIGNOP                     0
-   45                not              NOT                     0
-   45                  2              INT                     0
-   45                  ;             PUNC                     2
-   46          numsArray              VAR                    15
-   46                  [         GROUPING                     2
-   46                  3              INT                     0
-   46                  ]         GROUPING                     3
-   46                 :=         ASSIGNOP                     0
-   46              15.56             REAL                     0
+   45                 12              INT                     0
+   46                end          CONTROL                     3
    46                  ;             PUNC                     2
-   47                  q              VAR                    16
-   47                 :=         ASSIGNOP                     0
-   47                  q              VAR                    16
-   47                  [         GROUPING                     2
-   47                  4              INT                     0
-   47                  ]         GROUPING                     3
-   47                  ;             PUNC                     2
-   48                  q              VAR                    16
-   48                  [         GROUPING                     2
-   48                  4              INT                     0
-   48                  ]         GROUPING                     3
-   48                 :=         ASSIGNOP                     0
-   48                 12              INT                     0
-   49                end          CONTROL                     3
+   48              begin          CONTROL                     2
+   48                  *            MULOP                     3
+   49               call          CONTROL                     9
+   49               init              VAR                    25
    49                  ;             PUNC                     2
-   51              begin          CONTROL                     2
-   52               call          CONTROL                     9
-   52               init              VAR                    25
-   52                  ;             PUNC                     2
-   53               call          CONTROL                     9
-   53               fib2              VAR                    22
-   53                  ;             PUNC                     2
-   54               call          CONTROL                     9
-   54              rawr3              VAR                    24
-   54                  (         GROUPING                     0
-   54                 34              INT                     0
-   54                  ,             PUNC                     1
-   54                 56              INT                     0
-   54                  )         GROUPING                     1
-   55                end          CONTROL                     3
-   55                  .             PUNC                     0
-   56                EOF              EOF                     0
+   50               call          CONTROL                     9
+   50               fib2              VAR                    22
+   50                  ;             PUNC                     2
+   51               call          CONTROL                     9
+   51              rawr3              VAR                    24
+   51                  (         GROUPING                     0
+   51                 34              INT                     0
+   51                  ,             PUNC                     1
+   51                 56              INT                     0
+   51                  )         GROUPING                     1
+   51                  ;             PUNC                     2
+   52                end          CONTROL                     3
+   52                  .             PUNC                     0
+   54                  a              VAR                    13
+   54                           LEXERROR:     Unreconized symbol
+   54                end          CONTROL                     3
+   54                  .             PUNC                     0
+   55                EOF              EOF                     0

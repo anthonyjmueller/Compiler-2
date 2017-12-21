@@ -120,7 +120,7 @@ void popScope(){
         *currEnd = currPos;
     }
 
-    offset = (*currGreen).offset;
+    //offset = (*currGreen).offset;
     if((*currGreen).lexID != 10){
         while(currPos.nodeType != 3){
             currPos = *currPos.prev;

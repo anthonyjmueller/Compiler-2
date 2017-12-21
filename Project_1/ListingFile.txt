@@ -1,77 +1,80 @@
-1.    program fib(input , output); 
-2.    	var a: integer; var p: integer; 
-3.    	var numsArray : array [6..12] of integer; 
+1.    program fib(input; output); 
+     SYNERROR:   Found ; expected ',' ')'
+2.    	var a: int; var p: integer; 
+     SYNERROR:   Found int expected 'integer' or 'real' or 'array'
+3.    	var numsArray : array [6..12] on integer; 
+     SYNERROR:   Found on expected 'of'
 4.    	var q: real;
-5.    	
-6.    	procedure fib1(aLongInt : integer; b : real;
-7.    		c : integer; d: integer); 
-8.    		begin 
-9.    			if a <= 1 then fib := c
+5.     
+6.    	procedure fib1(aReallyLongInt : integer; b : real , c : real); 
+     LEXERROR:   ID Length exceeding 10 Characters:    aReallyLongInt
+     SYNERROR:   Found , expected ';' or ')'
+7.    		begin 
+8.    			if a <= 1.20 then fib := c 
+     LEXERROR:   Trailing zeros in real fraction:    1.20
      SYMERROR:   Variable name fib not in scope
-10.   			else call fib (a - 1, c, b + c)
+9.    			else call fib (a - 01, c, b + c) 
      SYMERROR:   called undefined procedure 
-     SYMERROR:   Incompatible types for addop 
-11.   		end;
-12.   		
-13.   	procedure fib2(a : integer); 
-14.   		var b : real; var c : real; var sum : integer; 
-15.   		var b : real; 
-     SYMERROR:   Variable name b already declared
-16.   		procedure rawr3(b : real); 
-17.   			var q : real; 
-18.   			begin 
-19.   				q := b + sum;
-     SYMERROR:   Incompatible types for addop 
-20.   				call fib2(q)
-21.   			end;
+     LEXERROR:   Integer has leading zeros:    01
+10.   		end;
+11.   		
+12.   	procedure fib2(a : integer); 
+13.   		var b : real; var c : real; var sum : ; 
+     SYNERROR:   Found ; expected 'integer' or 'real' or 'array'
+14.   		var b : real; 
+15.   		procedure rawr3(b : real);
+16.   			var q : real; 
+17.   			begin 
+18.   				q := b + 2.0; 
+19.   				call fib2(q). 
      SYMERROR:   Incorrect argument types in procedure call 
-22.   			
-23.   		begin 
-24.   			q := not 3; 
-     SYMERROR:   Incompatible type for boolean not operator 
-25.   			q := (3 < 4) and (3.6 < p); 
-     SYMERROR:   Incompatible types for relop 
-26.   			a := a - 1; 
-27.   			call fib1(3.2, 1); 
-     SYMERROR:   Incorrect number of arguments in procedure call 
-     SYMERROR:   Incorrect argument types in procedure call 
-28.   			sum := 1; 
-29.   			c := b;  
-30.   			while not (a > 0) do
-31.   			call rawr3(b * 4); 
-     SYMERROR:   Incompatible types for mulop '*' or '/' 
-32.   			begin 
-33.   				a := a - 1; 
-34.   				b := sum; 
-     SYMERROR:   Incompatible types for assignment 
-35.   				sum := c + sum; 
-     SYMERROR:   Incompatible types for addop 
-36.   				c := b 
-37.   			end;
-38.   			fib2 := sum 
+     SYNERROR:   Found . expected ';'
+20.   			end;
+21.   			
+22.   			begin 
+23.   				a := a - 1; 
+24.   				fib1(3.00); 
+     SYMERROR:   Variable name fib1 not in scope
+     SYNERROR:   Found ( expected '[' or ':='
+     LEXERROR:   Trailing zeros in real fraction:    3.00
+25.   				sum := 1; 
+26.   				c := b; 
+27.   				while a > 0) do 
+     SYNERROR:   Found ) expected 'do'
+28.   				call 3; 
+29.   				begin 
+30.   					a := a - 1; 
+31.   					b := sum; 
+32.   					sum := c + sum; 
+     SYMERROR:   Variable name sum not in scope
+33.   					c := b 
+34.   				end; 
+35.   				fib2 := sum 
      SYMERROR:   Variable name fib2 not in scope
-39.   		end;
-40.   		
-41.   		procedure init; 
-42.   		begin
-43.   			n := 12;
+36.   			end;
+37.   			
+38.   		procedure init; 
+39.   			begin
+40.   				n := 12; 
      SYMERROR:   Variable name n not in scope
-44.   			if not (1 < 74) or 3 then p:=(1 > 2) and(3 < n) 
-     SYMERROR:   Expected booleans for addop 'or' operator 
-45.   				else p:=not 2; 
-     SYMERROR:   Incompatible type for boolean not operator 
-46.   			numsArray[3] := 15.56; 
-     SYMERROR:   Incompatible types for assignment 
-47.   			q := q[4]; 
+41.   				if (1 and 2) or 3 then p := 12 
+     SYMERROR:   Incompatible types for mulop 'and' 
+42.   				else p := 14; 
+43.   				numsArray[3] := 15.560;
+     SYMERROR:   Variable name numsArray not in scope
+     LEXERROR:   Trailing zeros in real fraction:    15.560
+44.   				q := q[4]; 
      SYMERROR:   Incompatible type for Array index 
-48.   			q[4] := 12 
+45.   				q[4] := 12
      SYMERROR:   Incompatible type for Array index 
-49.   		end;
-50.   			
-51.   	begin 
-52.   		call init; 
-53.   		call fib2; 
-     SYMERROR:   Incorrect number of arguments in procedure call 
-54.   		call rawr3(34, 56) 
-     SYMERROR:   called undefined procedure 
-55.   	end.
+46.   			end;
+47.   			
+48.   			begin* 
+     SYNERROR:   Found * expected 'id' or 'call' or 'begin' or 'if' or 'while'
+49.   				call init; 
+50.   				call fib2; 
+51.   				call rawr3(34, 56); 
+52.   			end.
+53.   
+54.   a     SYNERROR:   Found a expected 'EOF'
+     LEXERROR:   Unreconized symbol:    
